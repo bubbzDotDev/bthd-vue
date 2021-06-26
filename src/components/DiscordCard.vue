@@ -3,7 +3,10 @@
     <div class="discord-card">
       <div class="discord-card-header">
         <img src="@/assets/img/icons/discord_logo_and_text_white.png" alt="Discord logo with text" width="140" height="27">
-        <span class="online-count-parent"><span class="online-count"><a href="https://discord.gg/bthd" target="_blank" rel="noopener">{{ onlineCount }}</a></span> Guardians Online</span>
+        <span class="online-count-parent">
+          <span class="online-count"><a href="https://discord.gg/bthd" target="_blank" rel="noopener">{{ onlineCount }}</a></span> 
+          Guardians Online
+        </span>
       </div>
       <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img class="discord-hover-img" src="@/assets/img/icons/discord_blurple.png" alt="Discord logo" width="45" height="34"></a></p>
     </div>
@@ -69,6 +72,9 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   font-weight: bold;
+}
+.online-count-parent {
+  font-size: 0.8rem;
 }
 .online-count {
   background-color: #23272A;
