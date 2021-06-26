@@ -78,9 +78,9 @@ li a:hover {
 
 .social {
   display: flex;
-  justify-content: space-evenly;
-  width: 100px;
-  padding: 0.5rem;
+  justify-content: space-between;
+  width: 150px;
+  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
 }
 
 .social a:hover > .icons {
