@@ -1,13 +1,14 @@
 <template>
-  <div>Leadership</div>
+  <div>
+    Logged in to console.
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'Leadership',
   setup() {
     
-  }
+  },
 }
 </script>
 

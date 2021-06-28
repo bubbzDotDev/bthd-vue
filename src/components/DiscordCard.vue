@@ -1,6 +1,6 @@
 <template>
   <div class="discord-container">
-    <div class="discord-card">
+    <base-card class="discord-card">
       <div class="discord-card-header">
         <img src="@/assets/img/icons/discord_logo_and_text_white.png" alt="Discord logo with text" width="140" height="27">
         <span class="online-count-parent">
@@ -9,7 +9,7 @@
         </span>
       </div>
       <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img class="discord-hover-img" src="@/assets/img/icons/discord_blurple.png" alt="Discord logo" width="45" height="34"></a></p>
-    </div>
+    </base-card>
   </div>
 </template>
 
@@ -50,15 +50,6 @@ export default {
 .discord-container {
   margin: 0 auto;
 }
-.discord-card {
-  background-color: #23272A;
-  font-weight: bold;
-  text-align: center;
-  border-radius: 5px;
-  width: fit-content;
-  box-shadow: 10px 10px 10px black;
-  margin: 1rem;
-}
 .discord-card-header {
   width: 300px;
   height: 70px;
@@ -84,6 +75,9 @@ export default {
   border-radius: 5px;
   font-size: 1rem;
 }
+.discord-card {
+  text-align: center;
+}
 .discord-card a {
   color: #99AAB5;
   text-decoration: none;
@@ -97,8 +91,5 @@ export default {
 }
 .discord-card img {
   vertical-align: middle;
-}
-.discord-card p {
-  padding-bottom: 0.75rem;
 }
 </style>

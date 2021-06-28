@@ -1,22 +1,27 @@
 <template>
-  <TheHeader />
-  <TheNav />
-  <router-view v-slot="slotProps">
+  <div class="app-grid">
+    <TheHeader />
+    <TheNav />
+    <router-view v-slot="slotProps" class="router-view">
       <transition name="route" mode="out-in">
         <component :is="slotProps.Component"></component>
       </transition>
     </router-view>
+    <TheFooter />
+  </div>
 </template>
 
 <script>
 import TheHeader from '@/components/layout/TheHeader.vue'
 import TheNav from '@/components/layout/TheNav.vue'
+import TheFooter from '@/components/layout/TheFooter.vue'
 
 export default {
   name: 'App',
   components: {
     TheHeader,
-    TheNav
+    TheNav,
+    TheFooter
   }
 }
 </script>
@@ -28,9 +33,18 @@ html {
   font-size: 18px;
   background-color: #2C2F33;
   box-sizing: border-box;
+  height: 100%;
 }
 body {
   margin: 0;
+  height: 100%;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  height: 100vh;
 }
 
 .route-enter-from {

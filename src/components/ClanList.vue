@@ -1,16 +1,16 @@
 <template>
   <main class="clan-list">
-    <div class="clans-card"> <!-- Swap out for <base-card> -->
-      <div class="clan-card-header"> <!-- Swap out for <basecard-header> -->
+    <base-card>
+      <basecard-header>
         CLANS
-      </div>
+      </basecard-header>
       <div class="clan-card-body">
         <div v-for="clan in clanInfo" :key="clan.id" class="clan-info">
           <a :href="clanUrl + clan.id" target="_blank" rel="noopener"><button>{{ clan.name }}</button></a>
           <p>Members: <span :class="clan.count === clan.max ? 'clan-info-count-red' : 'clan-info-count-green'">{{ clan.count }}/{{ clan.max }}</span></p>
         </div>
       </div>
-    </div>
+    </base-card>
   </main>
 </template>
 
@@ -55,24 +55,6 @@ export default {
 <style scoped>
 .clan-list {
   margin: 0 auto;
-}
-.clans-card {
-  box-shadow: 10px 10px 10px #000;
-  background-color: #23272A;
-  border-radius: 5px;
-  padding-bottom: 10px;
-  width: fit-content;
-  margin: 1rem;
-}
-.clan-card-header {
-  font-family: 'Russo One', sans-serif;
-  font-size: 30px;
-  background-color: #470dbbc9;
-  color: white;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px; 
-  text-align: center;
-  padding: 0.5rem;
 }
 .clan-card-body {
   display: grid;

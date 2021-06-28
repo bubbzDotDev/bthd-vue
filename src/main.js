@@ -6,6 +6,9 @@ import firebase from 'firebase'
 
 import BaseCard from '@/components/ui/BaseCard.vue'
 import BaseCardHeader from '@/components/ui/BaseCardHeader.vue'
+import BaseDialog from '@/components/ui/BaseDialog.vue'
+import BaseLoader from '@/components/ui/BaseLoader.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
@@ -28,5 +31,8 @@ app.use(router);
 
 app.component('base-card', BaseCard);
 app.component('basecard-header', BaseCardHeader);
+app.component('base-dialog', BaseDialog);
+app.component('base-loader', BaseLoader);
+app.component('base-button', BaseButton);
 
 app.mount('#app');

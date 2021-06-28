@@ -12,5 +12,6 @@
   border-radius: 5px;
   width: fit-content;
   margin: 1rem;
+  padding-bottom: 0.25rem;
 }
 </style>

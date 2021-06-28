@@ -4,9 +4,7 @@
       <li><a @click="clickHamburger" class="hamburger" href="#">&#9776;</a></li>
       <li><router-link @click="clickHamburger" to="/">Home</router-link></li>
       <li><router-link @click="clickHamburger" to="/leadership">Leadership</router-link></li>
-      <li v-if="currentRoute === 'dashboard'"> <!-- Add a "|| isLoggedIn" -->
-        <router-link @click="clickHamburger" to="/dashboard">Dashboard</router-link>
-      </li>
+      <li v-if="currentRoute === 'dashboard' || user"><router-link @click="clickHamburger" to="/dashboard">Dashboard</router-link></li>
     </ul>
     <div class="social">
       <a rel="noopener" href="https://twitter.com/bulletheadsclan" target="_blank"><i class="fab fa-twitter icons"></i></a>
@@ -18,6 +16,7 @@
 
 <script>
 import { computed } from 'vue'
+import { useStore } from 'vuex'
 import { useRoute } from 'vue-router';
 
 export default {
@@ -45,9 +44,16 @@ export default {
       return route.name;
     });
 
+    const store = useStore();
+
+    const user = computed(() => {
+      return store.getters['auth/user'];
+    });
+
     return {
       clickHamburger,
-      currentRoute
+      currentRoute,
+      user
     };
   },
 }
