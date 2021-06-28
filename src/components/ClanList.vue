@@ -1,7 +1,7 @@
 <template>
   <main class="clan-list">
-    <div class="clans-card">
-      <div class="clan-card-header">
+    <div class="clans-card"> <!-- Swap out for <base-card> -->
+      <div class="clan-card-header"> <!-- Swap out for <basecard-header> -->
         CLANS
       </div>
       <div class="clan-card-body">
@@ -72,6 +72,7 @@ export default {
   border-top-right-radius: 5px;
   border-top-left-radius: 5px; 
   text-align: center;
+  padding: 0.5rem;
 }
 .clan-card-body {
   display: grid;

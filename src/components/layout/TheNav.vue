@@ -1,9 +1,12 @@
 <template>
-  <nav class="nav-bar">
+  <nav>
     <ul class="navigation">
       <li><a @click="clickHamburger" class="hamburger" href="#">&#9776;</a></li>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Leadership</a></li>
+      <li><router-link @click="clickHamburger" to="/">Home</router-link></li>
+      <li><router-link @click="clickHamburger" to="/leadership">Leadership</router-link></li>
+      <li v-if="currentRoute === 'dashboard'"> <!-- Add a "|| isLoggedIn" -->
+        <router-link @click="clickHamburger" to="/dashboard">Dashboard</router-link>
+      </li>
     </ul>
     <div class="social">
       <a rel="noopener" href="https://twitter.com/bulletheadsclan" target="_blank"><i class="fab fa-twitter icons"></i></a>
@@ -14,30 +17,44 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+import { useRoute } from 'vue-router';
+
 export default {
   setup() {
     
     // Hamburger Menu
     function clickHamburger() {
-        document.querySelector('.navigation').classList.toggle('responsive');
-        document.querySelector('.navigation').classList.contains('responsive') ? document.querySelector('.hamburger').innerHTML = '&#10005;' : document.querySelector('.hamburger').innerHTML = '&#9776;';
+      const nav = document.querySelector('.navigation');
+      const hamburger = document.querySelector('.hamburger');
+      nav.classList.toggle('responsive');
+      nav.classList.contains('responsive') ? hamburger.innerHTML = '&#10005;' : hamburger.innerHTML = '&#9776;';
     }
     window.onresize = () => {
-        if (window.innerWidth > 520) {
-            document.querySelector('.navigation').classList.remove('responsive');
-            document.querySelector('.hamburger').innerHTML = '&#9776;';
-        }
+      const nav = document.querySelector('.navigation');
+      const hamburger = document.querySelector('.hamburger');
+      if (window.innerWidth > 520) {
+        nav.classList.remove('responsive');
+        hamburger.innerHTML = '&#9776;';
+      }
     };
 
+    const route = useRoute();
+
+    const currentRoute = computed(() => {
+      return route.name;
+    });
+
     return {
-      clickHamburger
+      clickHamburger,
+      currentRoute
     };
   },
 }
 </script>
 
 <style scoped>
-.nav-bar {
+nav {
   background-color: #343A40;
   display: flex;
   justify-content: space-between;
@@ -50,6 +67,7 @@ ul {
 li {
   list-style: none;
   width: fit-content;
+  transition: ease-in-out 1s;
 }
 
 li a {
@@ -92,9 +110,14 @@ li a:hover {
   font-size: 1.5rem;
 }
 
+a.router-link-active {
+  color: #fff;
+}
+
 @media only screen and (min-width: 32.5em) {
   .navigation {
       display: flex;
+      align-items: center;
   }
 
   .navigation li {

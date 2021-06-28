@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import TheHeader from '@/components/TheHeader.vue'
-import TheNav from '@/components/TheNav.vue'
+import TheHeader from '@/components/layout/TheHeader.vue'
+import TheNav from '@/components/layout/TheNav.vue'
 
 export default {
   name: 'App',
@@ -23,12 +23,14 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@700&family=Russo+One&display=swap');
-
-body {
-  margin: 0;
+html {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 18px;
   background-color: #2C2F33;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
 }
 
 .route-enter-from {
@@ -42,11 +44,11 @@ body {
 }
 
 .route-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .route-leave-active {
-  transition: all 0.3s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .route-enter-to,

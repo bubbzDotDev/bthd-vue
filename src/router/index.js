@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 const HomePage = () => import('@/views/HomePage.vue');
+const UserLogin = () => import('@/views/UserLogin.vue');
+const TheLeadership = () => import ('@/views/TheLeadership.vue');
 
 const router = createRouter({
     history: createWebHistory(),
@@ -8,6 +10,20 @@ const router = createRouter({
         { 
             path: '/', 
             component: HomePage 
+        },
+        { 
+            name: 'dashboard',
+            path: '/dashboard', 
+            component: UserLogin 
+        },
+        { 
+            name: 'leadership',
+            path: '/leadership', 
+            component: TheLeadership 
+        },
+        { 
+            path: '/:notFound(.*)', 
+            redirect: '/' 
         }
     ]
 });

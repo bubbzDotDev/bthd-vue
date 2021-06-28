@@ -55,9 +55,8 @@ export default {
   font-weight: bold;
   text-align: center;
   border-radius: 5px;
-  width: 310px;
+  width: fit-content;
   box-shadow: 10px 10px 10px black;
-  padding: 5px;
   margin: 1rem;
 }
 .discord-card-header {
@@ -66,12 +65,14 @@ export default {
   color: #fff;
   font-size: 0.7rem;
   background-color: #5865F2;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px; 
   display: flex;
   margin: 0.25rem auto;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   font-weight: bold;
+  padding: 0 0.5rem;
 }
 .online-count-parent {
   font-size: 0.8rem;
@@ -96,5 +97,8 @@ export default {
 }
 .discord-card img {
   vertical-align: middle;
+}
+.discord-card p {
+  padding-bottom: 0.75rem;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <header>
     <div id="logo">
-      <img src="../assets/img/logo.png" alt="Bulletheads Logo" width="229" height="259">
+      <img src="@/assets/img/logo.png" alt="Bulletheads Logo" width="229" height="259">
     </div>
     <div class="header-text">
       <h1>BULLETHEADS</h1>
