@@ -5,7 +5,7 @@ import router from '@/router'
 import firebase from 'firebase'
 
 import BaseCard from '@/components/ui/BaseCard.vue'
-import BaseCardHeader from '@/components/ui/BaseCardHeader.vue'
+import BasecardHeader from '@/components/ui/BasecardHeader.vue'
 import BaseDialog from '@/components/ui/BaseDialog.vue'
 import BaseLoader from '@/components/ui/BaseLoader.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
@@ -30,7 +30,7 @@ app.use(store);
 app.use(router);
 
 app.component('base-card', BaseCard);
-app.component('basecard-header', BaseCardHeader);
+app.component('basecard-header', BasecardHeader);
 app.component('base-dialog', BaseDialog);
 app.component('base-loader', BaseLoader);
 app.component('base-button', BaseButton);

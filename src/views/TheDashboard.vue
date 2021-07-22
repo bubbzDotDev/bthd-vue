@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-if="!user">
-      <UserLogin />
+    <div v-if="user">
+      <ClanConsole />
     </div>
     <div v-else>
-      <ClanConsole />
+      <UserLogin />
     </div>
   </div>
 </template>
@@ -23,7 +23,6 @@ export default {
   },
   setup() {
     const store = useStore();
-
     const user = computed(() => {
       return store.getters['auth/user'];
     });
