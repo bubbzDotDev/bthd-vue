@@ -19,7 +19,6 @@ export default class UsersDb {
       querySnapshot.forEach((doc) => {
         users.push(doc.data());
       });
-      console.log('users from db file:', users);
       store.dispatch('users/getUsersFromDb', users);
     });
     return users;
