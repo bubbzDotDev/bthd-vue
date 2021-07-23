@@ -37,7 +37,7 @@ export default {
             }
           }
         });
-    }, 300);
+    }, 500);
     
     return {
       user
