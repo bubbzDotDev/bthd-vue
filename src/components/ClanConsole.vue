@@ -1,6 +1,6 @@
 <template>
   <div class="console">
-    <h2>Welcome to the dashboard, {{ user.bungieName }}!</h2>
+    <h2>Welcome to the dashboard, {{ user.bungieName || user.userName }}!</h2>
   </div>
 </template>
 
