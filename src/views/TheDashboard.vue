@@ -22,7 +22,6 @@ import DashboardNav from '@/components/dashboard/DashboardNav.vue'
 
 export default {
   name: 'Dashboard',
-  emits: ['slide-out', 'slide-in'],
   components: {
     UserLogin,
     DashboardNav
