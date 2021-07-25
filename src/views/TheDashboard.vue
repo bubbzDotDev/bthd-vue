@@ -56,4 +56,8 @@ export default {
 .dashboard-menu-open {
   grid-template-columns: 13rem 1fr;
 }
+
+.router-view {
+  z-index: 0;
+}
 </style>

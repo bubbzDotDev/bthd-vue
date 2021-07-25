@@ -71,7 +71,7 @@ export default {
 }
 .clan-info button {
   cursor: pointer;
-  color: #470dbbc9;
+  color: #470dbb;
   font-weight: bold;
   background-color: #99AAB5;
   padding: 0.5rem;

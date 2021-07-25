@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <div class="nav-container">
+    <div class="nav-container" :class="{ 'menu-is-open':menuIsOpen }">
       <ul>
         <li @click="toggleMenu(false)"><router-link to="/dashboard"><img src="@/assets/img/icons/home.png" alt="home icon" height="20" width="20"/></router-link></li>
         <li @click="toggleMenu(false)"><router-link to="/profile"><img class="to-profile" src="@/assets/img/icons/user.png" alt="admin icon"/></router-link></li>
@@ -20,8 +20,10 @@
         <li @click="toggleMenu(false)"><span class="menu-item"> Manage BOTY</span></li>
       </ul>
     </div>
-    <div class="menu-arrow" @click="toggleMenu" :class="{'openArrow':menuIsOpen, 'closeArrow':!menuIsOpen}">
-      <img class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
+    <div class="match-background">
+      <div class="menu-arrow" @click="toggleMenu" :class="{'openArrow':menuIsOpen, 'closeArrow':!menuIsOpen}">
+        <img class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
+      </div>
     </div>
   </div>
 </template>
@@ -41,9 +43,19 @@ export default {
       }
     }
 
-    watch(menuIsOpen, (newValue) => {
-      emit('menu-open', newValue);
-    });
+    if (window.innerWidth > 520) {
+      watch(menuIsOpen, (newValue) => {
+        emit('menu-open', newValue);
+      });
+    }
+
+    window.onresize = () => {
+    if (window.innerWidth > 520) {
+      watch(menuIsOpen, (newValue) => {
+        emit('menu-open', newValue);
+      });
+    }
+};
 
     return {
       menuIsOpen,
@@ -55,16 +67,25 @@ export default {
 
 <style scoped>
 .sidebar { 
-  background-color: #470dbbc9;
   color: #fff;
   display: grid;
   grid-template-rows: 1fr 24px;
   height: 100%;
+  z-index: 1;
 }
 
 .nav-container {
   display: flex;
   justify-content: center;
+  background-color: #470dbb;
+}
+
+.match-background {
+  background-color: #470dbb;
+}
+
+.menu-is-open {
+  width: 13rem;
 }
 
 ul,

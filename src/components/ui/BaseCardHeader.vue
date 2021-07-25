@@ -8,7 +8,7 @@
 .header {
   font-family: 'Russo One', sans-serif;
   font-size: 30px;
-  background-color: #470dbbc9;
+  background-color: #470dbb;
   color: white;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px; 
