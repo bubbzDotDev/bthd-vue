@@ -4,7 +4,7 @@ const HomePage = () => import('@/views/HomePage.vue');
 const TheDashboard = () => import('@/views/TheDashboard.vue');
 const TheLeadership = () => import ('@/views/TheLeadership.vue');
 const UserProfile = () => import ('@/components/dashboard/UserProfile.vue');
-const ClanConsole = () => import ('@/components/dashboard/ClanConsole.vue');
+const DashboardHome = () => import ('@/components/dashboard/DashboardHome.vue');
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,7 +20,7 @@ const router = createRouter({
       children: [
           {
               path: '',
-              component: ClanConsole
+              component: DashboardHome
           },
           {
               path: '/profile',

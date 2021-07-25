@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div v-if="user" class="dashboard">
-      <DashboardNav />
+    <div v-if="user" class="dashboard-menu-closed" :class="{ 'dashboard-menu-open':menuIsOpen }">
+      <DashboardNav @menu-open="openMenu" />
       <router-view v-slot="slotProps" class="router-view">
         <transition name="route" mode="out-in">
           <component :is="slotProps.Component"></component>
@@ -15,36 +15,46 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import UserLogin from '@/components/UserLogin.vue'
-import ClanConsole from '@/components/dashboard/ClanConsole.vue'
 import DashboardNav from '@/components/dashboard/DashboardNav.vue'
 
 export default {
   name: 'Dashboard',
+  emits: ['slide-out', 'slide-in'],
   components: {
     UserLogin,
-    ClanConsole,
     DashboardNav
   },
   setup() {
+    const menuIsOpen = ref(false);
     const store = useStore();
     const user = computed(() => {
       return store.getters['auth/user'];
     });
 
+    function openMenu(event) {
+      menuIsOpen.value = event;
+    }
+
     return {
-      user
+      user,
+      openMenu,
+      menuIsOpen
     };
   }
 }
 </script>
 
 <style scoped>
-.dashboard {
+.dashboard-menu-closed {
   display: grid;
   grid-template-columns: 50px 1fr;
   height: 100%;
+}
+
+.dashboard-menu-open {
+  grid-template-columns: 13rem 1fr;
 }
 </style>
