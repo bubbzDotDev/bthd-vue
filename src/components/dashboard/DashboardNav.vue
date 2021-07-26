@@ -46,13 +46,41 @@
         </li>
       </ul>
       <ul class="nav-text" v-show="menuIsOpen">
-        <li><router-link @click="toggleMenu(false)" to="/dashboard"><span class="menu-item"> Dashboard Home</span></router-link></li>
-        <li><router-link @click="toggleMenu(false)" to="/profile"><span class="menu-item"> Profile</span></router-link></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Manage Clans</span></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Manage Site Staff</span></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Manage Members</span></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Manage BOTM</span></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Manage BOTY</span></li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard">
+            <span class="menu-item"> Dashboard Home</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/profile">
+            <span class="menu-item"> Profile</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/clans">
+            <span class="menu-item"> Manage Clans</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/staff">
+            <span class="menu-item"> Manage Site Staff</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/members">
+            <span class="menu-item"> Manage Members</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/botm">
+            <span class="menu-item"> Manage BOTM</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/boty">
+            <span class="menu-item"> Manage BOTY</span>
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="match-background">
