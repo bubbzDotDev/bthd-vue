@@ -72,7 +72,8 @@ export default {
       
       isLoading.value = false;
 
-      router.push({ name: 'dashboard-home', query: { redirect: '/dashboard' }});
+      router.push({ name: 'dashboard-home' });
+      // router.push({ name: 'dashboard-home', query: { redirect: '/dashboard' }});
     }
 
     function handleError() {

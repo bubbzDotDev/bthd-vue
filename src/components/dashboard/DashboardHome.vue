@@ -1,5 +1,5 @@
 <template>
-  <div class="console">
+  <div class="dashboard-home">
     <h2>Welcome to the dashboard<span v-if="user.bungieName || user.userName">, {{ user.bungieName || user.userName }}!</span><span v-else>!</span></h2>
   </div>
 </template>
@@ -20,13 +20,10 @@ export default {
       return store.getters['auth/user']; 
     });
 
-    usersDb.setUsers();
-
-    setTimeout(() => {
-      const users = computed(() => {
-        return store.getters['users/users'];
-      });
-      users.value
+    const users = computed(() => {
+          return store.getters['users/users'];
+        });
+        users.value
         .then(result => {
           usersTarget = Object.assign({}, result);
         })
@@ -37,8 +34,26 @@ export default {
             }
           }
         });
-    }, 500);
-    
+
+    usersDb.setUsers();
+
+    setTimeout(() => {
+        const users = computed(() => {
+          return store.getters['users/users'];
+        });
+        users.value
+        .then(result => {
+          usersTarget = Object.assign({}, result);
+        })
+        .then(() => {
+          for (const property in usersTarget) {
+            if(usersTarget[property].id === authUser.value.uid) {
+              user.value = usersTarget[property];
+            }
+          }
+        });
+      }, 500);
+
     return {
       user
     };
@@ -47,7 +62,7 @@ export default {
 </script>
 
 <style scoped>
-.console {
+.dashboard-home {
   color: #fff;
 }
 

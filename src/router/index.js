@@ -6,6 +6,11 @@ const TheLeadership = () => import('@/views/TheLeadership.vue');
 const UserProfile = () => import('@/components/dashboard/UserProfile.vue');
 const DashboardHome = () => import('@/components/dashboard/DashboardHome.vue');
 const SignUp = () => import('@/components/dashboard/SignUp.vue');
+const ManageClans = () => import('@/components/dashboard/ManageClans.vue');
+const ManageStaff = () => import('@/components/dashboard/ManageStaff.vue');
+const ManageMembers = () => import('@/components/dashboard/ManageMembers.vue');
+const ManageBOTM = () => import('@/components/dashboard/ManageBOTM.vue');
+const ManageBOTY = () => import('@/components/dashboard/ManageBOTY.vue');
 
 const router = createRouter({
   history: createWebHistory(),
@@ -33,6 +38,31 @@ const router = createRouter({
               name: 'profile',
               path: '/profile',
               component: UserProfile
+          },
+          {
+              name: 'manage-clans',
+              path: 'clans',
+              component: ManageClans
+          },
+          {
+              name: 'manage-staff',
+              path: 'staff',
+              component: ManageStaff
+          },
+          {
+              name: 'manage-members',
+              path: 'members',
+              component: ManageMembers
+          },
+          {
+              name: 'manage-botm',
+              path: 'botm',
+              component: ManageBOTM
+          },
+          {
+              name: 'manage-boty',
+              path: 'boty',
+              component: ManageBOTY
           }
       ]
     },

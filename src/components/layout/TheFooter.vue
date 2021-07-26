@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <a v-if="user" @click="logout" href="#">Logout</a>
+    <router-link v-if="user" @click="logout" to="/">Logout</router-link>
     <router-link to="/dashboard">Staff</router-link>
   </footer>
 </template>

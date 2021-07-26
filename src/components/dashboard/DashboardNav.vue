@@ -2,27 +2,62 @@
   <div class="sidebar">
     <div class="nav-container" :class="{ 'menu-is-open':menuIsOpen }">
       <ul>
-        <li @click="toggleMenu(false)"><router-link to="/dashboard"><img src="@/assets/img/icons/home.png" alt="home icon" height="20" width="20"/></router-link></li>
-        <li @click="toggleMenu(false)"><router-link to="/profile"><img class="to-profile" src="@/assets/img/icons/user.png" alt="admin icon"/></router-link></li>
-        <li @click="toggleMenu(false)"><img src="@/assets/img/icons/settings.png" alt="settings icon" width="20" height="20"></li>
-        <li @click="toggleMenu(false)"><img src="@/assets/img/icons/staff.png" alt="staff icon" width="24" height="24"></li>
-        <li @click="toggleMenu(false)"><img src="@/assets/img/icons/promote.png" alt="promote icon" width="24" height="24"></li>
-        <li @click="toggleMenu(false)"><img src="@/assets/img/icons/m.png" alt="Bullethead of the Month icon" width="16" height="16"></li>
-        <li @click="toggleMenu(false)"><img src="@/assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16"></li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard" class="tooltip">
+            <img src="@/assets/img/icons/home.png" alt="home icon" height="20" width="20" />
+            <span v-if="!menuIsOpen" class="tooltiptext">Dashboard Home</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/profile" class="tooltip">
+            <img class="to-profile" src="@/assets/img/icons/user.png" alt="admin icon" width="16" height="16" />
+            <span v-if="!menuIsOpen" class="tooltiptext">Profile</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/clans" class="tooltip">
+            <img src="@/assets/img/icons/settings.png" alt="settings icon" width="20" height="20">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Clans</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/staff" class="tooltip">
+            <img src="@/assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
+            <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/botm" class="tooltip">
+            <img src="@/assets/img/icons/m.png" alt="Bullethead of the Month icon" width="16" height="16">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTM</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/boty" class="tooltip">
+            <img src="@/assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTY</span>
+          </router-link>
+        </li>
       </ul>
       <ul class="nav-text" v-show="menuIsOpen">
-        <li @click="toggleMenu(false)"><router-link to="/dashboard"><span class="menu-item"> Dashboard Home</span></router-link></li>
-        <li @click="toggleMenu(false)"><router-link to="/profile"><span class="menu-item"> Profile</span></router-link></li>
+        <li><router-link @click="toggleMenu(false)" to="/dashboard"><span class="menu-item"> Dashboard Home</span></router-link></li>
+        <li><router-link @click="toggleMenu(false)" to="/profile"><span class="menu-item"> Profile</span></router-link></li>
         <li @click="toggleMenu(false)"><span class="menu-item"> Manage Clans</span></li>
         <li @click="toggleMenu(false)"><span class="menu-item"> Manage Site Staff</span></li>
-        <li @click="toggleMenu(false)"><span class="menu-item"> Promote Members</span></li>
+        <li @click="toggleMenu(false)"><span class="menu-item"> Manage Members</span></li>
         <li @click="toggleMenu(false)"><span class="menu-item"> Manage BOTM</span></li>
         <li @click="toggleMenu(false)"><span class="menu-item"> Manage BOTY</span></li>
       </ul>
     </div>
     <div class="match-background">
-      <div class="menu-arrow" @click="toggleMenu" :class="{'openArrow':menuIsOpen, 'closeArrow':!menuIsOpen}">
-        <img class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
+      <div class="menu-arrow" :class="{'openArrow':menuIsOpen, 'closeArrow':!menuIsOpen}">
+        <img @click="toggleMenu" class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
       </div>
     </div>
   </div>
@@ -134,5 +169,45 @@ a {
 
 .closeArrow {
   transition: 1s transform cubic-bezier(0,.12,.14,1);
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  white-space: nowrap;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 150%;
+}
+
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent black transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 </style>
