@@ -1,7 +1,7 @@
 <template>
   <footer>
     <router-link v-if="user" @click="logout" to="/">Logout</router-link>
-    <router-link to="/dashboard">Staff</router-link>
+    <router-link v-else to="/dashboard">Staff</router-link>
   </footer>
 </template>
 
