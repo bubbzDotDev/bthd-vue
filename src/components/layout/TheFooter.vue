@@ -8,21 +8,14 @@
 <script>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router';
-import { useRouter } from 'vue-router'
 
 export default {
   setup() {
     const store = useStore();
-    const route = useRoute();
-    const router = useRouter();
 
     async function logout() {
       try {
         await store.dispatch('auth/logout');
-        if (route.name === 'dashboard') {
-          router.replace('/');
-        }
       } catch (err) {
         console.log('Error:', err.message);
       }
