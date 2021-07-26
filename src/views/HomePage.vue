@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import ClanList from '@/components/ClanList.vue'
-import DiscordCard from '@/components/DiscordCard.vue'
+import ClanList from '@/components/misc/ClanList.vue'
+import DiscordCard from '@/components/misc/DiscordCard.vue'
 
 export default {
   name: 'HomePage',

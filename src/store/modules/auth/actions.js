@@ -7,20 +7,20 @@ export default {
       mode: 'login'
     });
   },
-  // async signup(context, payload) {
-  //   return context.dispatch('auth', {
-  //     ...payload,
-  //     mode: 'signup'
-  //   });
-  // },
+  async signup(context, payload) {
+    return context.dispatch('auth', {
+      ...payload,
+      mode: 'signup'
+    });
+  },
   async auth({ commit }, payload) {
-    // const mode = payload.mode;
+    const mode = payload.mode;
 
-    firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+    if (mode === 'login') {
+      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        // console.log(user.uid);
         commit('setUser', user);
       })
       .catch((error) => {
@@ -28,10 +28,20 @@ export default {
         console.log('Error message:', error.message);
       }
     );
+    }
 
-    // if (mode === 'signup') {
-    //     Sign up option
-    // }
+    if (mode === 'signup') {
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        commit('setUser', user);
+      })
+      .catch((error) => {
+        console.log('Error code:', error.code);
+        console.log('Error message:', error.message);
+      });
+    }
   },
   logout({ commit }) {
     firebase.auth().signOut().then(() => {

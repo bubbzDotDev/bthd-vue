@@ -1,6 +1,6 @@
 <template>
   <div class="console">
-    <h2>Welcome to the dashboard, {{ user.bungieName || user.userName }}!</h2>
+    <h2>Welcome to the dashboard<span v-if="user.bungieName || user.userName">, {{ user.bungieName || user.userName }}!</span><span v-else>!</span></h2>
   </div>
 </template>
 

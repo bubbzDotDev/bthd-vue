@@ -2,9 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const HomePage = () => import('@/views/HomePage.vue');
 const TheDashboard = () => import('@/views/TheDashboard.vue');
-const TheLeadership = () => import ('@/views/TheLeadership.vue');
-const UserProfile = () => import ('@/components/dashboard/UserProfile.vue');
-const DashboardHome = () => import ('@/components/dashboard/DashboardHome.vue');
+const TheLeadership = () => import('@/views/TheLeadership.vue');
+const UserProfile = () => import('@/components/dashboard/UserProfile.vue');
+const DashboardHome = () => import('@/components/dashboard/DashboardHome.vue');
+const SignUp = () => import('@/components/dashboard/SignUp.vue');
 
 const router = createRouter({
   history: createWebHistory(),
@@ -19,10 +20,17 @@ const router = createRouter({
       component: TheDashboard,
       children: [
           {
+              name: 'dashboard-home',  
               path: '',
               component: DashboardHome
           },
           {
+              name: 'signup',
+              path: '/signup',
+              component: SignUp
+          },
+          {
+              name: 'profile',
               path: '/profile',
               component: UserProfile
           }

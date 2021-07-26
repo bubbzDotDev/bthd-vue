@@ -7,7 +7,7 @@
       <base-loader></base-loader>
     </base-dialog>
     <base-card>
-      <basecard-header>Login</basecard-header>
+      <basecard-header>Sign Up</basecard-header>
       <form>
         <label>
           <fieldset>
@@ -23,15 +23,19 @@
         </label>
         <p v-if="!formIsValid">Email address invalid. Try again.</p>
         <p v-if="error">{{ error }}</p>
-        <button @click="submitForm" type="button">Let me in</button>
+        <button @click="submitForm" type="button">Sign me up</button>
       </form>
     </base-card>
+    <router-link to="/dashboard">
+      <p class="sign-in">Already have an account? Sign in here.</p>
+    </router-link>
   </section>
 </template>
 
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default {
   setup() {
@@ -42,6 +46,7 @@ export default {
     const error = ref(null);
 
     const store = useStore();
+    const router = useRouter();
 
     async function submitForm() {
       formIsValid.value = true;
@@ -58,7 +63,7 @@ export default {
       };
 
       try {
-        await store.dispatch('auth/login', data);
+        await store.dispatch('auth/signup', data);
         email.value = '';
         password.value = '';
       } catch (err) {
@@ -66,11 +71,14 @@ export default {
       }
       
       isLoading.value = false;
+
+      router.push({ name: 'dashboard-home', query: { redirect: '/dashboard' }});
     }
 
     function handleError() {
       error.value = null;
     }
+
 
     return {
       email,
@@ -112,7 +120,7 @@ input {
   border-radius: 5px;
 }
 input:focus {
-  border: 5px solid #470dbbc9;
+  border: 5px solid #470dbb;
 }
 
 button {
@@ -127,10 +135,24 @@ button {
   border-radius: 5px;
   margin-top: 0.5rem;
 }
+
 button:hover,
 button:active,
 button:focus {
-  border: 5px solid #470dbbc9;
-  color: #470dbbc9;
+  border: 5px solid #470dbb;
+  color: #470dbb;
+}
+
+.sign-in {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: #99AAB5;
+}
+
+a:hover {
+  color: #fff;
 }
 </style>

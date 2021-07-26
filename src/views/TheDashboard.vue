@@ -9,7 +9,12 @@
       </router-view>
     </div>
     <div v-else>
-      <UserLogin />
+      <div v-if="currentRoute === 'signup'">
+        <SignUp />
+      </div>
+      <div v-else>
+        <UserLogin />
+      </div>
     </div>
   </div>
 </template>
@@ -17,20 +22,28 @@
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import UserLogin from '@/components/UserLogin.vue'
+import { useRoute } from 'vue-router';
+import UserLogin from '@/components/dashboard/UserLogin.vue'
+import SignUp from '@/components/dashboard/SignUp.vue'
 import DashboardNav from '@/components/dashboard/DashboardNav.vue'
 
 export default {
   name: 'Dashboard',
   components: {
     UserLogin,
-    DashboardNav
+    DashboardNav,
+    SignUp
   },
   setup() {
     const menuIsOpen = ref(false);
     const store = useStore();
     const user = computed(() => {
       return store.getters['auth/user'];
+    });
+
+    const route = useRoute();
+    const currentRoute = computed(() => {
+      return route.name;
     });
 
     function openMenu(event) {
@@ -40,7 +53,8 @@ export default {
     return {
       user,
       openMenu,
-      menuIsOpen
+      menuIsOpen,
+      currentRoute
     };
   }
 }
