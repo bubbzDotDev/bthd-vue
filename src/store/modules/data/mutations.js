@@ -5,5 +5,8 @@ export default {
         if (index === -1) {
             state.clans.push(payload);
         }
+    },
+    setClansFromListener(state, payload) {
+        state.clans = payload;
     }
 }

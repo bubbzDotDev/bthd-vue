@@ -1,5 +1,5 @@
 <template>
-  <main class="clan-list">
+  <div class="clan-list" v-if="clanInfo.length > 0">
     <base-card>
       <basecard-header>
         CLANS
@@ -11,7 +11,7 @@
         </div>
       </div>
     </base-card>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -20,29 +20,14 @@ import { useStore } from 'vuex'
 
 export default {
   setup() {
-    // Initial variables
     const clanInfo = ref([]);
     const clanUrl = 'https://www.bungie.net/en/ClanV2?groupid=';
 
-    // Clan IDs
-    const clanIds = [
-        3379218,
-        4154203,
-        3375350,
-        3036440,
-        3041710,
-        3056680,
-        3070897,
-        3395516
-      ];
-
     const store = useStore();
-
-    // Send request to cache the data
-    clanIds.forEach(clan => { store.dispatch('data/cacheDataToDb', clan); });
     
-    // Retrieve the data
-    clanInfo.value = store.getters['data/clans'];
+    setTimeout(() => {
+      clanInfo.value = store.getters['data/clans'];
+    }, 500);
     
     return {
       clanInfo,

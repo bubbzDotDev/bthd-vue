@@ -30,44 +30,20 @@ export default {
 </script>
 
 <style scoped>
-button,
-a {
-  text-decoration: none;
-  padding: 0.75rem 1.5rem;
-  font: inherit;
-  background-color: #3a0061;
-  border: 1px solid #3a0061;
-  color: white;
+button {
   cursor: pointer;
-  border-radius: 30px;
-  margin-right: 0.5rem;
-  display: inline-block;
+  color: #470dbb;
+  font-weight: bold;
+  background-color: #99AAB5;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: large;
 }
 
-a:hover,
-a:active,
 button:hover,
 button:active {
-  background-color: #270041;
-  border-color: #270041;
-}
-
-.flat {
-  background-color: transparent;
-  color: #3a0061;
-  border: none;
-}
-
-.outline {
-  background-color: transparent;
-  border-color: #270041;
-  color: #270041;
-}
-
-.flat:hover,
-.flat:active,
-.outline:hover,
-.outline:active {
-  background-color: #edd2ff;
+  color: #99AAB5;
+  background-color: #000;
 }
 </style>
