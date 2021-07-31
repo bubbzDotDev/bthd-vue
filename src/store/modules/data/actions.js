@@ -1,6 +1,11 @@
 import ClansDb from '@/firebase/clans-db.js'
 
 export default {
+    removeClan({ commit }, payload) {
+        commit('removeClan', payload);
+        const clansDb = new ClansDb();
+        clansDb.removeClan(payload);
+    },
     getClansFromListener({ commit }, payload) {
         commit('setClansFromListener', payload);
     },

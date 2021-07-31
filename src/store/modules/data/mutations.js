@@ -8,5 +8,14 @@ export default {
     },
     setClansFromListener(state, payload) {
         state.clans = payload;
+    },
+    removeClan(state, payload) {
+        const index = state.clans.indexOf(clan => {
+            clan.id === payload.id;
+        });
+
+        if (index > -1) {
+            state.clans.splice(index, 1);
+        }
     }
 }

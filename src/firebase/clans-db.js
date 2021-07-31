@@ -15,6 +15,16 @@ export default class ClansDb {
       });
   }
 
+  async removeClan(clan) {
+    ref.doc(`${clan.id}`).delete()
+    .then(() => {
+      console.log("Document successfully deleted!");
+    })
+    .catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+  }
+
   async addClan(clan) {
     ref.doc(`${clan.id}`).set({
       id: clan.id,
