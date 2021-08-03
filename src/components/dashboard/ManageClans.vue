@@ -16,11 +16,13 @@
     <AddClanModal 
       v-if="addClanModalIsVisible"
       @hide-modal="hideAddClanModal"
+      @toast="toast('add')"
     />
     <RemoveClanModal 
       v-if="removeClanModalIsVisible"
       :clan="clanForRemoval"
       @hide-modal="hideRemoveClanModal"
+      @toast="toast('remove')"
     />
   </div>
 </template>
@@ -28,9 +30,9 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
 import AddClanModal from '@/components/dashboard/modals/AddClanModal.vue'
 import RemoveClanModal from '@/components/dashboard/modals/RemoveClanModal.vue'
+import toastr from 'toastr'
 
 export default {
   components: {
@@ -47,15 +49,12 @@ export default {
     
     clanInfo.value = store.getters['data/clans'];
 
-    const router = useRouter();
-
     function launchAddClanModal() {
       addClanModalIsVisible.value = true;
     }
 
     function hideAddClanModal() {
       addClanModalIsVisible.value = false;
-      router.replace({ name: 'manage-clans'});
     }
 
     function launchRemoveClanModal(clan) {
@@ -65,7 +64,34 @@ export default {
 
     function hideRemoveClanModal() {
       removeClanModalIsVisible.value = false;
-      router.replace({ name: 'manage-clans'});
+    }
+
+    function toast(type) {
+      if (type === 'remove') {
+        toastr["success"]("Clan removed!", "Success:")
+      }
+
+      if (type === 'add') {
+        toastr["success"]("Clan added!", "Success:")
+      }
+      
+      toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+      }
     }
     
     return {
@@ -77,13 +103,16 @@ export default {
       launchRemoveClanModal,
       removeClanModalIsVisible,
       hideRemoveClanModal,
-      clanForRemoval
+      clanForRemoval,
+      toast
     };
   }
 }
 </script>
 
 <style scoped>
+@import url('../../../node_modules/toastr/build/toastr.css');
+
 .manage-clans {
   margin: 0 auto;
 }

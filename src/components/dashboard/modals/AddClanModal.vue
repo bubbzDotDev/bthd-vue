@@ -21,7 +21,7 @@ import { ref } from 'vue'
 import { useStore } from 'vuex'
 
 export default {
-  emits: ['hide-modal'],
+  emits: ['hide-modal', 'toast'],
   setup(_, { emit }) {
     const clanId = ref();
 
@@ -34,6 +34,7 @@ export default {
     function addClan() {
       store.dispatch('data/cacheDataToDb', clanId.value);
       hideModal();
+      emit('toast');
     }
 
     return {

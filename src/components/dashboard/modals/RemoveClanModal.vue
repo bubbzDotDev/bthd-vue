@@ -18,11 +18,11 @@ export default {
   props: {
     clan: Object
   },
-  emits: ['hide-modal'],
+  emits: ['hide-modal', 'toast'],
   setup(props, { emit }) {
 
     function hideModal() {
-      emit('hide-modal')
+      emit('hide-modal');
     }
 
     const store = useStore();
@@ -31,6 +31,7 @@ export default {
       const clan = props.clan;
       store.dispatch('data/removeClan', clan);
       hideModal();
+      emit('toast');
     }
 
     return {

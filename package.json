@@ -11,9 +11,11 @@
     "core-js": "^3.6.5",
     "firebase": "^8.6.8",
     "normalize.css": "^8.0.1",
+    "toastr": "^2.1.4",
     "vue": "^3.0.0",
     "vue-loader-v16": "^16.0.0-beta.5.4",
     "vue-router": "^4.0.6",
+    "vue-toastr": "^2.1.2",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

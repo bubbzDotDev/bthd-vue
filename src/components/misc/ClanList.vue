@@ -1,6 +1,6 @@
 <template>
-  <div class="clan-list" v-if="clanInfo.length > 0">
-    <base-card>
+  <div class="clan-list">
+    <base-card v-if="clanInfo.length > 0">
       <basecard-header>
         CLANS
       </basecard-header>
@@ -10,6 +10,13 @@
           <p>Members: <span :class="clan.count === clan.max ? 'clan-info-count-red' : 'clan-info-count-green'">{{ clan.count }}/{{ clan.max }}</span></p>
         </div>
       </div>
+    </base-card>
+    <base-card v-else>
+      <basecard-header>
+        CLANS
+      </basecard-header>
+      <p style="text-align: center;">Loading...</p>
+      <div class="loader"></div>
     </base-card>
   </div>
 </template>
@@ -27,7 +34,7 @@ export default {
     
     setTimeout(() => {
       clanInfo.value = store.getters['data/clans'];
-    }, 500);
+    }, 2000);
     
     return {
       clanInfo,
@@ -79,5 +86,23 @@ export default {
 .clan-info-count-red {
   color: red;
   font-weight: bold;
+}
+.loader {
+  width:30px;
+  height:27.6px;
+  --c:radial-gradient(farthest-side,#470dbb,#470dbb,#470dbb,#0000);
+  background: 
+    var(--c) 50%  0,
+    var(--c) 0    100%,
+    var(--c) 100% 100%;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: dots 1s infinite;
+  margin: 0 auto;
+}
+
+@keyframes dots{ 
+    50%,100% {background-position: 100% 100%,50% 0,0 100%} 
 }
 </style>
