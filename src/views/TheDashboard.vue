@@ -4,7 +4,7 @@
       <DashboardNav @menu-open="openMenu" />
       <router-view v-slot="slotProps" class="router-view">
         <transition name="route" mode="out-in">
-          <component :is="slotProps.Component"></component>
+          <component :is="slotProps.Component" @rerender="forceRerender" :key="componentKey"></component>
         </transition>
       </router-view>
     </div>
@@ -49,12 +49,19 @@ export default {
     function openMenu(event) {
       menuIsOpen.value = event;
     }
+    
+    const componentKey = ref(0);
+    function forceRerender() {
+      componentKey.value++;
+    }
 
     return {
       user,
       openMenu,
       menuIsOpen,
-      currentRoute
+      currentRoute,
+      componentKey,
+      forceRerender
     };
   }
 }

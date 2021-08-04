@@ -1,6 +1,6 @@
 <template>
   <div class="manage-botm">
-    <h2>BOTM</h2>
+    <h2>Manage BOTM</h2>
   </div>
 </template>
   

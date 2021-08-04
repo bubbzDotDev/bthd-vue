@@ -1,6 +1,6 @@
 <template>
   <div class="manage-staff">
-    <h2>Staff</h2>
+    <h2>Manage Staff</h2>
   </div>
 </template>
 

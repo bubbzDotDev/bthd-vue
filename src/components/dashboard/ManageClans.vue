@@ -2,7 +2,7 @@
   <div class="manage-clans">
     <base-card>
       <basecard-header>
-        CLANS
+        MANAGE CLANS
       </basecard-header>
       <div class="clan-card-body">
         <div v-for="clan in clanInfo" :key="clan.id" class="clan-info">
@@ -39,7 +39,8 @@ export default {
     AddClanModal,
     RemoveClanModal
   },
-  setup() {
+  emits: ['rerender'],
+  setup(_, { emit }) {
     const addClanModalIsVisible = ref(false);
     const removeClanModalIsVisible = ref(false);
     const clanForRemoval = ref({});
@@ -69,10 +70,12 @@ export default {
     function toast(type) {
       if (type === 'remove') {
         toastr["success"]("Clan removed!", "Success:")
+        emit('rerender');
       }
 
       if (type === 'add') {
         toastr["success"]("Clan added!", "Success:")
+        emit('rerender');
       }
       
       toastr.options = {
