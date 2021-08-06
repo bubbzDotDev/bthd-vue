@@ -2,7 +2,7 @@ import firebase from '@/firebase'
 import store from '@/store'
 
 const db = firebase.firestore();
-const ref = db.collection("clans");
+const ref = db.collection('clans');
 export default class ClansDb {
 
   async setListener() {
@@ -18,10 +18,10 @@ export default class ClansDb {
   async removeClan(clan) {
     ref.doc(`${clan.id}`).delete()
     .then(() => {
-      console.log("Document successfully deleted!");
+      console.log('Document successfully deleted!');
     })
     .catch((error) => {
-        console.error("Error removing document: ", error);
+        console.error('Error removing document: ', error);
     });
   }
 
@@ -35,10 +35,26 @@ export default class ClansDb {
       founders: clan.founders
     })
     .then(() => {
-      console.log("Document successfully written!");
+      console.log('Document successfully written!');
     })
     .catch((error) => {
-        console.error("Error writing document: ", error);
+        console.error('Error writing document: ', error);
+    });
+  }
+
+  async updateClan(clan) {
+    ref.doc(`${clan.id}`).update({
+      name: clan.name,
+      count: clan.count,
+      max: clan.max,
+      admins: clan.admins,
+      founders: clan.founders
+    })
+    .then(() => {
+      console.log('Document successfully updated!');
+    })
+    .catch((error) => {
+        console.error('Error updating document: ', error);
     });
   }
 }

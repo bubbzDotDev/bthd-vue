@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+import { useStore } from 'vuex'
 import TheHeader from '@/components/layout/TheHeader.vue'
 import TheNav from '@/components/layout/TheNav.vue'
 import TheFooter from '@/components/layout/TheFooter.vue'
@@ -22,6 +24,22 @@ export default {
     TheHeader,
     TheNav,
     TheFooter
+  },
+  setup() {
+    const clanInfo = ref([]);
+
+    const store = useStore();
+    
+    setTimeout(() => {
+      clanInfo.value = store.getters['data/clans'];
+
+      setInterval(() => {
+        clanInfo.value.forEach(clan => {
+          store.dispatch('data/updateDataInDb', clan.id);
+        });
+      }, 3600000);
+
+    }, 2000);
   }
 }
 </script>

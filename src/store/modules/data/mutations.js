@@ -20,5 +20,22 @@ export default {
         if (index > -1) {
             state.clans.splice(index, 1);
         }
+    },
+    updateClan(state, payload) {
+        const index = state.clans.indexOf(clan => {
+            clan.id === payload.id;
+        });
+
+        if (index > -1) {
+            // Remove clan
+            state.clans.splice(index, 1);
+
+            const findDuplicates = (element) => element.id === payload.id;
+            const newIndex = state.clans.findIndex(findDuplicates);
+            if (newIndex === -1) {
+                // Add clan
+                state.clans.push(payload);
+            }
+        }
     }
 }

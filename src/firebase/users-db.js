@@ -2,7 +2,7 @@ import firebase from '@/firebase'
 import store from '@/store'
 
 const db = firebase.firestore();
-const ref = db.collection("users");
+const ref = db.collection('users');
 export default class UsersDb {
 
   async setListener() {
