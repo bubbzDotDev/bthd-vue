@@ -7,12 +7,12 @@ export default class ClansDb {
 
   async setListener() {
     ref.onSnapshot((querySnapshot) => {
-          const clans = [];
-          querySnapshot.forEach((doc) => {
-              clans.push(doc.data());
-          });
-          store.dispatch('data/getClansFromListener', clans);
+      const clans = [];
+      querySnapshot.forEach((doc) => {
+        clans.push(doc.data());
       });
+      store.dispatch('data/getClansFromListener', clans);
+    });
   }
 
   async removeClan(clan) {
@@ -21,7 +21,7 @@ export default class ClansDb {
       console.log('Document successfully deleted!');
     })
     .catch((error) => {
-        console.error('Error removing document: ', error);
+      console.error('Error removing document: ', error);
     });
   }
 
@@ -38,7 +38,7 @@ export default class ClansDb {
       console.log('Document successfully written!');
     })
     .catch((error) => {
-        console.error('Error writing document: ', error);
+      console.error('Error writing document: ', error);
     });
   }
 
@@ -54,7 +54,7 @@ export default class ClansDb {
       console.log('Document successfully updated!');
     })
     .catch((error) => {
-        console.error('Error updating document: ', error);
+      console.error('Error updating document: ', error);
     });
   }
 }

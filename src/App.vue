@@ -27,7 +27,6 @@ export default {
   },
   setup() {
     const clanInfo = ref([]);
-
     const store = useStore();
     
     setTimeout(() => {
@@ -37,7 +36,7 @@ export default {
         clanInfo.value.forEach(clan => {
           store.dispatch('data/updateDataInDb', clan.id);
         });
-      }, 3600000);
+      }, 3600000); // 1hr: 3600000
 
     }, 2000);
   }

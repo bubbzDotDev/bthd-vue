@@ -40,7 +40,7 @@ export default {
                 xhrStaff.open('GET', `https://www.bungie.net/Platform/GroupV2/${groupId}/AdminsAndFounder/`, true);
                 xhrStaff.setRequestHeader('X-API-Key', apiKey);
             
-                xhrStaff.onreadystatechange = function(){
+                xhrStaff.onreadystatechange = function() {
                     if (this.readyState === 4 && this.status === 200) {
                         const json = JSON.parse(this.responseText);
                         json.Response.results.forEach(member => {
@@ -51,7 +51,8 @@ export default {
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
                                     name: member.destinyUserInfo.LastSeenDisplayName,
-                                    id: member.bungieNetUserInfo.membershipId
+                                    id: member.bungieNetUserInfo.membershipId,
+                                    bungieName: member.bungieNetUserInfo.displayName
                                 };
                                 clan['admins'].push(admin);
                             }
@@ -62,7 +63,8 @@ export default {
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
                                     name: member.destinyUserInfo.LastSeenDisplayName,
-                                    id: member.bungieNetUserInfo.membershipId
+                                    id: member.bungieNetUserInfo.membershipId,
+                                    bungieName: member.bungieNetUserInfo.displayName
                                 };
                                 clan['founders'].push(founder);
                             }
@@ -118,7 +120,8 @@ export default {
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
                                     name: member.destinyUserInfo.LastSeenDisplayName,
-                                    id: member.bungieNetUserInfo.membershipId
+                                    id: member.bungieNetUserInfo.membershipId,
+                                    bungieName: member.bungieNetUserInfo.displayName
                                 };
                                 clan['admins'].push(admin);
                             }
@@ -129,7 +132,8 @@ export default {
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
                                     name: member.destinyUserInfo.LastSeenDisplayName,
-                                    id: member.bungieNetUserInfo.membershipId
+                                    id: member.bungieNetUserInfo.membershipId,
+                                    bungieName: member.bungieNetUserInfo.displayName
                                 };
                                 clan['founders'].push(founder);
                             }
