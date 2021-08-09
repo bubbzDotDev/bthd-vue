@@ -10,13 +10,13 @@
           <p>Team Leader<span v-if="clan.founders.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="founder in clan.founders" :key="founder.id">
-              <a :href="`https://www.bungie.net/en/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener">{{ founder.name }}</a>
+              <a :href="`https://www.bungie.net/en/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener" class="team-leaders">{{ founder.name }}</a>
             </li>
           </ul>
           <p v-if="clan.admins.length > 0">Admin<span v-if="clan.admins.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="admin in clan.admins" :key="admin.id">
-              <a :href="`https://www.bungie.net/en/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener">{{ admin.name }}</a>
+              <a :href="`https://www.bungie.net/en/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener" class="admins">{{ admin.name }}</a>
             </li>
           </ul>
         </div>
@@ -84,6 +84,27 @@ export default {
 
 .staff-list {
   list-style: none;
-  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.staff-list li a {
+text-decoration: none;
+}
+
+.staff-list li a:hover {
+  text-decoration: underline;
+}
+
+.founders {
+  color: #f1c40f;
+}
+
+.team-leaders {
+  color: #9b59b6;
+}
+
+.admins {
+  color: #206694;
 }
 </style>

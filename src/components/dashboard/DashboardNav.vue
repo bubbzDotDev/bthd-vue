@@ -83,10 +83,8 @@
         </li>
       </ul>
     </div>
-    <div class="match-background">
-      <div class="menu-arrow" :class="{'openArrow':menuIsOpen, 'closeArrow':!menuIsOpen}">
-        <img @click="toggleMenu" class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
-      </div>
+    <div class="menu-arrow" :class="{ 'openArrow':menuIsOpen }">
+      <img @click="toggleMenu" class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
     </div>
   </div>
 </template>
@@ -131,20 +129,14 @@ export default {
 <style scoped>
 .sidebar { 
   color: #fff;
-  display: grid;
-  grid-template-rows: 1fr 24px;
   height: 100%;
   z-index: 1;
+  background-color: #470dbb;
 }
 
 .nav-container {
   display: flex;
   justify-content: center;
-  background-color: #470dbb;
-}
-
-.match-background {
-  background-color: #470dbb;
 }
 
 .menu-is-open {
@@ -191,12 +183,7 @@ a {
 }
 
 .openArrow {
-  transition: 1s transform cubic-bezier(0,.12,.14,1);
-  transform: translateX(95px) scaleX(-1);
-}
-
-.closeArrow {
-  transition: 1s transform cubic-bezier(0,.12,.14,1);
+  transform: scaleX(-1);
 }
 
 /* Tooltip container */
