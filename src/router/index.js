@@ -11,6 +11,7 @@ const ManageStaff = () => import('@/components/dashboard/ManageStaff.vue');
 const ManageMembers = () => import('@/components/dashboard/ManageMembers.vue');
 const ManageBOTM = () => import('@/components/dashboard/ManageBOTM.vue');
 const ManageBOTY = () => import('@/components/dashboard/ManageBOTY.vue');
+const ManageLeadership = () => import('@/components/dashboard/ManageLeadership.vue');
 
 const router = createRouter({
   history: createWebHistory(),
@@ -63,6 +64,11 @@ const router = createRouter({
               name: 'manage-boty',
               path: 'boty',
               component: ManageBOTY
+          },
+          {
+              name: 'manage-leadership',
+              path: 'leadership',
+              component: ManageLeadership
           }
       ]
     },

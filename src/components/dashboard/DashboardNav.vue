@@ -27,6 +27,12 @@
           </router-link>
         </li>
         <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/leadership" class="tooltip">
+            <img src="@/assets/img/icons/leadership.png" alt="staff icon" width="24" height="24">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Leadership</span>
+          </router-link>
+        </li>
+        <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
             <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
@@ -64,6 +70,11 @@
         <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/staff">
             <span class="menu-item"> Manage Site Staff</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/leadership">
+            <span class="menu-item"> Manage Leadership</span>
           </router-link>
         </li>
         <li>
