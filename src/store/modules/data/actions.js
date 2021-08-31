@@ -50,7 +50,6 @@ export default {
                                     memberType: member.memberType,
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
-                                    name: member.destinyUserInfo.LastSeenDisplayName,
                                     id: member.bungieNetUserInfo.membershipId,
                                     bungieName: member.bungieNetUserInfo.displayName
                                 };
@@ -62,7 +61,6 @@ export default {
                                     memberType: member.memberType,
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
-                                    name: member.destinyUserInfo.LastSeenDisplayName,
                                     id: member.bungieNetUserInfo.membershipId,
                                     bungieName: member.bungieNetUserInfo.displayName
                                 };
@@ -119,7 +117,6 @@ export default {
                                     memberType: member.memberType,
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
-                                    name: member.destinyUserInfo.LastSeenDisplayName,
                                     id: member.bungieNetUserInfo.membershipId,
                                     bungieName: member.bungieNetUserInfo.displayName
                                 };
@@ -131,7 +128,6 @@ export default {
                                     memberType: member.memberType,
                                     isOnline: member.isOnline,
                                     lastOnlineStatusChange: member.lastOnlineStatusChange,
-                                    name: member.destinyUserInfo.LastSeenDisplayName,
                                     id: member.bungieNetUserInfo.membershipId,
                                     bungieName: member.bungieNetUserInfo.displayName
                                 };

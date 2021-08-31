@@ -1,6 +1,6 @@
 <template>
   <div class="leadership">
-    <base-card>
+    <base-card v-if="clanInfo.length > 0">
       <basecard-header>
         LEADERSHIP
       </basecard-header>
@@ -10,17 +10,24 @@
           <p>Team Leader<span v-if="clan.founders.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="founder in clan.founders" :key="founder.id">
-              <a :href="`https://www.bungie.net/en/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener" class="team-leaders">{{ founder.name }}</a>
+              <a :href="`https://www.bungie.net/7/en/User/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener" class="team-leaders">{{ founder.bungieName }}</a>
             </li>
           </ul>
           <p v-if="clan.admins.length > 0">Admin<span v-if="clan.admins.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="admin in clan.admins" :key="admin.id">
-              <a :href="`https://www.bungie.net/en/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener" class="admins">{{ admin.name }}</a>
+              <a :href="`https://www.bungie.net/7/en/User/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener" class="admins">{{ admin.bungieName }}</a>
             </li>
           </ul>
         </div>
       </div>
+    </base-card>
+    <base-card v-else>
+      <basecard-header>
+        LEADERSHIP
+      </basecard-header>
+      <p style="text-align: center;">Loading...</p>
+      <div class="loader"></div>
     </base-card>
   </div>
 </template>
@@ -36,7 +43,9 @@ export default {
     const clanUrl = 'https://www.bungie.net/en/ClanV2?groupid=';
     const store = useStore();
 
-    clanInfo.value = store.getters['data/clans'];
+    setTimeout(() => {
+      clanInfo.value = store.getters['data/clans'];
+    }, 2000);
 
     return {
       clanInfo,
@@ -106,5 +115,24 @@ text-decoration: none;
 
 .admins {
   color: #206694;
+}
+
+.loader {
+  width:30px;
+  height:27.6px;
+  --c:radial-gradient(farthest-side,#470dbb,#470dbb,#470dbb,#0000);
+  background: 
+    var(--c) 50%  0,
+    var(--c) 0    100%,
+    var(--c) 100% 100%;
+  background-size: 12px 12px;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: dots 1s infinite;
+  margin: 0 auto;
+}
+
+@keyframes dots{ 
+    50%,100% {background-position: 100% 100%,50% 0,0 100%} 
 }
 </style>

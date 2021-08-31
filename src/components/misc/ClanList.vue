@@ -34,9 +34,6 @@ export default {
     
     setTimeout(() => {
       clanInfo.value = store.getters['data/clans'];
-      setInterval(() => {
-        
-      });
     }, 2000);
     
     return {
