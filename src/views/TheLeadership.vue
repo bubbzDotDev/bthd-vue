@@ -44,7 +44,7 @@ export default {
     const store = useStore();
 
     setTimeout(() => {
-      clanInfo.value = store.getters['data/clans'];
+      clanInfo.value = store.getters['leadership/leadership'];
     }, 2000);
 
     return {

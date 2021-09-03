@@ -1,10 +1,13 @@
 import ClansDb from '@/firebase/clans-db.js'
+import LeadershipDb from '@/firebase/leadership-db.js'
 
 export default {
     removeClan({ commit }, payload) {
         commit('removeClan', payload);
         const clansDb = new ClansDb();
         clansDb.removeClan(payload);
+        const leadershipDb = new LeadershipDb();
+        leadershipDb.removeClan(payload);
     },
     getClansFromListener({ commit }, payload) {
         commit('setClansFromListener', payload);
@@ -13,6 +16,7 @@ export default {
         const apiKey = process.env.VUE_APP_BUNGIE_API_KEY;
         const groupId = payload;
         const clansDb = new ClansDb();
+        const leadershipDb = new LeadershipDb();
 
         const clan = {
             id: groupId,
@@ -69,6 +73,7 @@ export default {
                         });
                         commit('setClan', clan);
                         clansDb.addClan(clan);
+                        leadershipDb.loadClan(clan);
                     }
                 }
                 xhrStaff.send();

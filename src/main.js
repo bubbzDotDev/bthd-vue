@@ -4,6 +4,7 @@ import store from '@/store'
 import router from '@/router'
 
 import ClansDb from '@/firebase/clans-db.js'
+import LeadershipDb from '@/firebase/leadership-db.js'
 
 import BaseCard from '@/components/ui/BaseCard.vue'
 import BasecardHeader from '@/components/ui/BasecardHeader.vue'
@@ -15,6 +16,9 @@ const app = createApp(App);
 
 const clansDb = new ClansDb();
 clansDb.setListener();
+
+const leadershipDb = new LeadershipDb();
+leadershipDb.setListener();
 
 app.use(store);
 app.use(router);
