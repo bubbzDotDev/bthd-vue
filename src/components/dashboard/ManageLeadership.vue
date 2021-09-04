@@ -10,6 +10,9 @@
       <div v-if="leadershipInfo.length > 0" class="clan-card-body">
         <div v-for="clan in leadershipInfo" :key="clan.id" class="clan-info">
           <a :href="clanUrl + clan.id" target="_blank" rel="noopener"><button>{{ clan.name }}</button></a>
+          <div class="reset">
+            <button @click="loadClan(clan)">Reset</button>
+          </div>
           <p>Team Leader<span v-if="clan.founders.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="founder in clan.founders" :key="founder.id">
@@ -73,6 +76,18 @@ export default {
       }, 2000);
     }
 
+    function loadClan(clan) {
+      clanInfo.value.forEach(clanToUpdate => {
+        if (clanToUpdate.id === clan.id) {
+          leadershipDb.loadClan(clanToUpdate);
+
+          setTimeout(() => {
+            leadershipInfo.value = store.getters['leadership/leadership'];
+          }, 2000);
+        }
+      });
+    }
+
     function promoteToTeamLeader(clan, admin) {
       const clanTarget = JSON.parse(JSON.stringify(clan));
       const adminTarget = JSON.parse(JSON.stringify(admin));
@@ -109,7 +124,8 @@ export default {
       leadershipInfo,
       loadAllClans,
       promoteToTeamLeader,
-      demoteToAdmin
+      demoteToAdmin,
+      loadClan
     };
   }
 }
@@ -209,5 +225,9 @@ text-decoration: none;
 
 .promote-demote-buttons {
   margin: 0.25rem;
+}
+
+.reset {
+  margin-top: 0.5rem;
 }
 </style>
