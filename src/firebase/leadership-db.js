@@ -40,13 +40,13 @@ export default class LeadershipDb {
     });
   }
 
-  async promote(clan) {
+  async promoteOrDemote(clan) {
     ref.doc(`${clan.id}`).update({
       admins: clan.admins,
       founders: clan.founders
     })
     .then(() => {
-      console.log('Admin successfully promoted!');
+      console.log('Position successfully changed!');
     })
     .catch((error) => {
       console.error('Error promoting admin: ', error);

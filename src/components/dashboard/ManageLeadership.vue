@@ -14,14 +14,17 @@
           <ul class="staff-list">
             <li v-for="founder in clan.founders" :key="founder.id">
               <a :href="`https://www.bungie.net/7/en/User/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener" class="team-leaders">{{ founder.bungieName }}</a>
+              <button v-if="founder.memberType === 3" @click="demoteToAdmin(clan, founder)" class="promote-demote-buttons">
+                <img src="@/assets/img/icons/demote.png" alt="demote icon" width="20" height="20">
+              </button>
             </li>
           </ul>
           <p v-if="clan.admins.length > 0">Admin<span v-if="clan.admins.length > 1">s</span>:</p>
           <ul class="staff-list">
             <li v-for="admin in clan.admins" :key="admin.id">
               <a :href="`https://www.bungie.net/7/en/User/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener" class="admins">{{ admin.bungieName }}</a>
-              <button @click="promoteToTeamLeader(clan, admin)">
-                <img src="@/assets/img/icons/promote.png" alt="promote icon" width="24" height="24">
+              <button @click="promoteToTeamLeader(clan, admin)" class="promote-demote-buttons">
+                <img src="@/assets/img/icons/promote.png" alt="promote icon" width="20" height="20">
               </button>
             </li>
           </ul>
@@ -47,7 +50,7 @@ import { useStore } from 'vuex'
 import LeadershipDb from '@/firebase/leadership-db.js'
 
 export default {
-  setup() {
+  setup(_, { emit }) {
     const clanInfo = ref([]);
     const leadershipInfo = ref([]);
     const clanUrl = 'https://www.bungie.net/en/ClanV2?groupid=';
@@ -71,19 +74,33 @@ export default {
     }
 
     function promoteToTeamLeader(clan, admin) {
-      const clanToEdit = clan;
+      const clanTarget = JSON.parse(JSON.stringify(clan));
+      const adminTarget = JSON.parse(JSON.stringify(admin));
 
-      const index = clanToEdit.admins.indexOf(promotee => {
-        promotee.id === admin.id;
-      });
+      const index = clanTarget.admins.findIndex(member => member.id === adminTarget.id);
 
       if (index > -1) {
-        clanToEdit.admins.splice(index, 1);
+        clanTarget.admins.splice(index, 1);
+        clanTarget.founders.push(adminTarget);
+        leadershipDb.promoteOrDemote(clanTarget);
+        store.dispatch('leadership/promoteOrDemote', clanTarget);
+        emit('rerender');
       }
+    }
 
-      clanToEdit.founders.push(admin);
+    function demoteToAdmin(clan, admin) {
+      const clanTarget = JSON.parse(JSON.stringify(clan));
+      const adminTarget = JSON.parse(JSON.stringify(admin));
 
-      leadershipDb.promote(clanToEdit);
+      const index = clanTarget.founders.findIndex(member => member.id === adminTarget.id);
+
+      if (index > -1) {
+        clanTarget.founders.splice(index, 1);
+        clanTarget.admins.push(adminTarget);
+        leadershipDb.promoteOrDemote(clanTarget);
+        store.dispatch('leadership/promoteOrDemote', clanTarget);
+        emit('rerender');
+      }
     }
 
     return {
@@ -91,7 +108,8 @@ export default {
       clanUrl,
       leadershipInfo,
       loadAllClans,
-      promoteToTeamLeader
+      promoteToTeamLeader,
+      demoteToAdmin
     };
   }
 }
@@ -187,5 +205,9 @@ text-decoration: none;
 .load-reset-all {
   text-align: center;
   padding-top: 1rem;
+}
+
+.promote-demote-buttons {
+  margin: 0.25rem;
 }
 </style>
