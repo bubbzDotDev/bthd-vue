@@ -21,21 +21,9 @@
           </router-link>
         </li>
         <li>
-          <router-link @click="toggleMenu(false)" to="/dashboard/staff" class="tooltip">
-            <img src="@/assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
-            <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
-          </router-link>
-        </li>
-        <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/leadership" class="tooltip">
             <img src="@/assets/img/icons/leadership.png" alt="staff icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Leadership</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
-            <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
-            <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
           </router-link>
         </li>
         <li>
@@ -48,6 +36,18 @@
           <router-link @click="toggleMenu(false)" to="/dashboard/boty" class="tooltip">
             <img src="@/assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTY</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/staff" class="tooltip">
+            <img src="@/assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
+            <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
+            <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
           </router-link>
         </li>
       </ul>
@@ -68,18 +68,8 @@
           </router-link>
         </li>
         <li>
-          <router-link @click="toggleMenu(false)" to="/dashboard/staff">
-            <span class="menu-item"> Manage Site Staff</span>
-          </router-link>
-        </li>
-        <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/leadership">
             <span class="menu-item"> Manage Leadership</span>
-          </router-link>
-        </li>
-        <li>
-          <router-link @click="toggleMenu(false)" to="/dashboard/members">
-            <span class="menu-item"> Manage Members</span>
           </router-link>
         </li>
         <li>
@@ -90,6 +80,16 @@
         <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/boty">
             <span class="menu-item"> Manage BOTY</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/staff">
+            <span class="menu-item"> Manage Site Staff</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link @click="toggleMenu(false)" to="/dashboard/members">
+            <span class="menu-item"> Manage Members</span>
           </router-link>
         </li>
       </ul>

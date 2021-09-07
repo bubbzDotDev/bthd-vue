@@ -1,4 +1,5 @@
 import firebase from 'firebase'
+import UsersDb from '@/firebase/users-db.js'
 
 export default {
   async login(context, payload) {
@@ -35,6 +36,10 @@ export default {
       .then((userCredential) => {
         // Signed in 
         const user = userCredential.user;
+        
+        const usersDb = new UsersDb();
+        usersDb.addUser(user);
+
         commit('setUser', user);
       })
       .catch((error) => {
