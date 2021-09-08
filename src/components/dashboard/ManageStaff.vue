@@ -8,7 +8,10 @@
         <div class="roles-container">
           <h3>Roles</h3>
           <ul class="roles-list">
-            <li v-for="role in roles" :key="role.id"><a @click="launchViewRoleModal(role)">{{ role.name }}</a></li>
+            <li v-for="role in roles" :key="role.id">
+              <a @click="launchViewRoleModal(role)">{{ role.name }}</a>
+              <button @click="launchDeleteRoleModal(role)" class="delete-role-button">✖</button>
+            </li>
             <li class="center"><base-button @click="launchCreateRoleModal">Create Role</base-button></li>
           </ul>
         </div>
@@ -85,7 +88,8 @@ export default {
       createRoleModalIsVisible.value = false;
     }
 
-    function launchDeleteRoleModal() {
+    function launchDeleteRoleModal(role) {
+      roleForModals.value = role;
       deleteRoleModalIsVisible.value = true;
     }
 
@@ -106,7 +110,6 @@ export default {
 
       if (type === 'role-edited') {
         toastr["success"]("Role edited!", "Success:")
-        emit('rerender');
       }
       
       toastr.options = {
@@ -172,6 +175,10 @@ export default {
   margin: 0;
 }
 
+li {
+  padding: 0.25rem;
+}
+
 .roles-container,
 .users-container {
   border: 3px dashed #343A40;
@@ -193,5 +200,18 @@ h3 {
 a:hover {
   cursor: pointer;
   text-decoration: underline;
+  color: #fff;
+}
+
+.delete-role-button {
+  color: red;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: large;
+}
+
+.delete-role-button:hover {
+  color: #fff;
 }
 </style>
