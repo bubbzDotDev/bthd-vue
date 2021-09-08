@@ -6,6 +6,7 @@
 
 <script>
 import UsersDb from '@/firebase/users-db.js'
+import RolesDb from '@/firebase/roles-db.js'
 import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
 
@@ -15,6 +16,9 @@ export default {
     let usersTarget;
     const store = useStore();
     const usersDb = new UsersDb();
+
+    const rolesDb = new RolesDb();
+    rolesDb.setListener();
     
     const authUser = computed(() => { // Use ".uid" on this to get the ID
       return store.getters['auth/user']; 
@@ -53,6 +57,8 @@ export default {
           }
         });
       }, 500);
+
+    
 
     return {
       user

@@ -31,13 +31,38 @@ export default class UsersDb {
       id: user.uid,
       email: user.email,
       bungieId: null,
-      bungieName: null
+      bungieName: null,
+      roles: []
     })
     .then(() => {
       console.log('User added successfully!');
     })
     .catch((error) => {
       console.error('Error adding user: ', error);
+    });
+  }
+
+  async addRoleToUser(user, role) {
+    ref.doc(`${user.uid}`).update({
+      roles: firebase.firestore.FieldValue.arrayUnion(role)
+    })
+    .then(() => {
+      console.log('Role added successfully!');
+    })
+    .catch((error) => {
+      console.error('Error adding role: ', error);
+    });
+  }
+
+  async removeRoleFromUser(user, role) {
+    ref.doc(`${user.uid}`).update({
+      roles: firebase.firestore.FieldValue.arrayRemove(role)
+    })
+    .then(() => {
+      console.log('Role removed successfully!');
+    })
+    .catch((error) => {
+      console.error('Error removing role: ', error);
     });
   }
 
