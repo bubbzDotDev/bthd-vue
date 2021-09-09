@@ -1,6 +1,6 @@
 <template>
   <div class="user-profile">
-    <h2>Welcome to your profile<span v-if="user.bungieName || user.userName || user.email">, {{ user.bungieName || user.userName || user.email }}!</span><span v-else>!</span></h2>
+    <h2>Welcome to your profile<span v-if="user.bungieName || user.email">, {{ user.bungieName || user.email }}!</span><span v-else>!</span></h2>
   </div>
 </template>
 

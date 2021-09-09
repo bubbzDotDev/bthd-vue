@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-home">
-    <h2>Welcome to the dashboard<span v-if="user.bungieName || user.userName || user.email">, {{ user.bungieName || user.userName || user.email }}!</span><span v-else>!</span></h2>
+    <h2>Welcome to the dashboard<span v-if="user.bungieName || user.email">, {{ user.bungieName || user.email }}!</span><span v-else>!</span></h2>
   </div>
 </template>
 

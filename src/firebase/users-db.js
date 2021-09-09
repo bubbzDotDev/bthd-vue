@@ -43,8 +43,8 @@ export default class UsersDb {
   }
 
   async addRoleToUser(user, role) {
-    ref.doc(`${user.uid}`).update({
-      roles: firebase.firestore.FieldValue.arrayUnion(role)
+    ref.doc(`${user.id}`).update({
+      roles: firebase.firestore.FieldValue.arrayUnion(role.id)
     })
     .then(() => {
       console.log('Role added successfully!');
@@ -55,8 +55,8 @@ export default class UsersDb {
   }
 
   async removeRoleFromUser(user, role) {
-    ref.doc(`${user.uid}`).update({
-      roles: firebase.firestore.FieldValue.arrayRemove(role)
+    ref.doc(`${user.id}`).update({
+      roles: firebase.firestore.FieldValue.arrayRemove(role.id)
     })
     .then(() => {
       console.log('Role removed successfully!');

@@ -18,7 +18,9 @@
         <div class="users-container">
           <h3>Users</h3>
           <ul class="users-list">
-            <li v-for="user in users" :key="user.id">{{ user.bungieName || user.email }}</li>
+            <li v-for="user in users" :key="user.id">
+              <a @click="launchEditUserRolesModal(user)">{{ user.bungieName || user.email }}</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -40,6 +42,13 @@
       @hide-modal="hideDeleteRoleModal"
       @toast="toast('role-deleted')"
     />
+    <EditUserRolesModal 
+      v-if="editUserRolesModalIsVisible"
+      :user="userForModals"
+      :roles="roles"
+      @hide-modal="hideEditUserRolesModal"
+      @toast="toast('user-role-edited')"
+    />
   </div>
 </template>
 
@@ -49,13 +58,15 @@ import { useStore } from 'vuex'
 import CreateRoleModal from '@/components/dashboard/modals/CreateRoleModal.vue'
 import DeleteRoleModal from '@/components/dashboard/modals/DeleteRoleModal.vue'
 import ViewRoleModal from '@/components/dashboard/modals/ViewRoleModal.vue'
+import EditUserRolesModal from '@/components/dashboard/modals/EditUserRolesModal.vue'
 import toastr from 'toastr'
 
 export default {
   components: {
     CreateRoleModal,
     DeleteRoleModal,
-    ViewRoleModal
+    ViewRoleModal,
+    EditUserRolesModal
   },
   emits: ['rerender'],
   setup(_, { emit }) {
@@ -67,6 +78,8 @@ export default {
     const deleteRoleModalIsVisible = ref(false);
     const viewRoleModalIsVisible = ref(false);
     const roleForModals = ref({});
+    const userForModals = ref({});
+    const editUserRolesModalIsVisible = ref(false);
 
     users.value = store.getters['users/users'];
     users.value
@@ -111,6 +124,11 @@ export default {
       if (type === 'role-edited') {
         toastr["success"]("Role edited!", "Success:")
       }
+
+      if (type === 'user-role-edited') {
+        toastr["success"]("User edited!", "Success:")
+        emit('rerender');
+      }
       
       toastr.options = {
         "closeButton": true,
@@ -140,6 +158,15 @@ export default {
       viewRoleModalIsVisible.value = false;
     }
 
+    function launchEditUserRolesModal(user) {
+      userForModals.value = user;
+      editUserRolesModalIsVisible.value = true;
+    }
+
+    function hideEditUserRolesModal() {
+      editUserRolesModalIsVisible.value = false;
+    }
+
     return {
       users,
       roles,
@@ -153,7 +180,11 @@ export default {
       hideDeleteRoleModal,
       launchViewRoleModal,
       viewRoleModalIsVisible,
-      hideViewRoleModal
+      hideViewRoleModal,
+      launchEditUserRolesModal,
+      userForModals,
+      hideEditUserRolesModal,
+      editUserRolesModalIsVisible
     }
   }
 }
