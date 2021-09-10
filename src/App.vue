@@ -45,6 +45,8 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:wght@700&family=Russo+One&display=swap');
+@import url('../node_modules/toastr/build/toastr.css');
+
 html {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-size: 18px;

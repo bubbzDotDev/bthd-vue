@@ -1,5 +1,5 @@
 <template>
-  <div class="manage-clans">
+  <div v-if="hasPermissions" class="manage-clans">
     <base-card>
       <basecard-header>
         MANAGE CLANS
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import AddClanModal from '@/components/dashboard/modals/AddClanModal.vue'
 import RemoveClanModal from '@/components/dashboard/modals/RemoveClanModal.vue'
@@ -41,12 +41,51 @@ export default {
   },
   emits: ['rerender'],
   setup(_, { emit }) {
+    const hasPermissions = ref(false);
+    const user = ref({});
+    const roles = ref([]);
+    const rolesWithPermission = ref([]);
+    let usersTarget;
     const addClanModalIsVisible = ref(false);
     const removeClanModalIsVisible = ref(false);
     const clanForRemoval = ref({});
     const clanInfo = ref([]);
     const clanUrl = 'https://www.bungie.net/en/ClanV2?groupid=';
     const store = useStore();
+
+    const authUser = computed(() => {
+      return store.getters['auth/user']; 
+    });
+
+    const users = computed(() => {
+      return store.getters['users/users'];
+    });
+    users.value
+    .then(result => {
+      usersTarget = Object.assign({}, result);
+    })
+    .then(() => {
+      for (const property in usersTarget) {
+        if(usersTarget[property].id === authUser.value.uid) {
+          user.value = usersTarget[property];
+
+          roles.value = store.getters['roles/roles'];
+          roles.value = JSON.parse(JSON.stringify(roles.value));
+
+          roles.value.forEach(role => {
+            if (role.permissions.includes('ManageClans')) {
+              rolesWithPermission.value.push(role.id);
+            }
+          });
+
+          rolesWithPermission.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              hasPermissions.value = true;
+            }
+          });
+        }
+      }
+    });
     
     clanInfo.value = store.getters['data/clans'];
 
@@ -107,15 +146,14 @@ export default {
       removeClanModalIsVisible,
       hideRemoveClanModal,
       clanForRemoval,
-      toast
+      toast,
+      hasPermissions
     };
   }
 }
 </script>
 
 <style scoped>
-@import url('../../../node_modules/toastr/build/toastr.css');
-
 .manage-clans {
   margin: 0 auto;
 }

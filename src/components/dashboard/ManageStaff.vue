@@ -1,5 +1,5 @@
 <template>
-  <div class="manage-staff">
+  <div v-if="hasPermissions" class="manage-staff">
     <base-card>
       <basecard-header>
         MANAGE SITE STAFF
@@ -18,7 +18,7 @@
         <div class="users-container">
           <h3>Users</h3>
           <ul class="users-list">
-            <li v-for="user in users" :key="user.id">
+            <li v-for="user in usersForTemplate" :key="user.id">
               <a @click="launchEditUserRolesModal(user)">{{ user.bungieName || user.email }}</a>
             </li>
           </ul>
@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import CreateRoleModal from '@/components/dashboard/modals/CreateRoleModal.vue'
 import DeleteRoleModal from '@/components/dashboard/modals/DeleteRoleModal.vue'
@@ -70,8 +70,11 @@ export default {
   },
   emits: ['rerender'],
   setup(_, { emit }) {
-    const users = ref([]);
+    const usersForTemplate = ref([]);
+    const hasPermissions = ref(false);
+    const user = ref({});
     const roles = ref([]);
+    const rolesWithPermission = ref([]);
     let usersTarget;
     const store = useStore();
     const createRoleModalIsVisible = ref(false);
@@ -81,17 +84,46 @@ export default {
     const userForModals = ref({});
     const editUserRolesModalIsVisible = ref(false);
 
-    users.value = store.getters['users/users'];
-    users.value
-        .then(result => {
-          usersTarget = Object.assign({}, result);
-          usersTarget = JSON.parse(JSON.stringify(usersTarget));
-          users.value = usersTarget;
-        });
-    
+    const authUser = computed(() => {
+      return store.getters['auth/user']; 
+    });
 
-    roles.value = store.getters['roles/roles'];
-    roles.value = JSON.parse(JSON.stringify(roles.value));
+    const users = computed(() => {
+      return store.getters['users/users'];
+    });
+    users.value
+    .then(result => {
+      usersTarget = Object.assign({}, result);
+    })
+    .then(() => {
+      for (const property in usersTarget) {
+        if(usersTarget[property].id === authUser.value.uid) {
+          user.value = usersTarget[property];
+
+          roles.value = store.getters['roles/roles'];
+          roles.value = JSON.parse(JSON.stringify(roles.value));
+
+          roles.value.forEach(role => {
+            if (role.permissions.includes('ManageSiteStaff')) {
+              rolesWithPermission.value.push(role.id);
+            }
+          });
+
+          rolesWithPermission.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              hasPermissions.value = true;
+            }
+          });
+        }
+      }
+    });
+
+    usersForTemplate.value = store.getters['users/users'];
+    usersForTemplate.value
+        .then(result => {
+          usersForTemplate.value = Object.assign({}, result);
+          usersForTemplate.value = JSON.parse(JSON.stringify(usersTarget));
+        });
 
     function launchCreateRoleModal() {
       createRoleModalIsVisible.value = true;
@@ -168,7 +200,7 @@ export default {
     }
 
     return {
-      users,
+      usersForTemplate,
       roles,
       toast,
       roleForModals,
@@ -184,7 +216,8 @@ export default {
       launchEditUserRolesModal,
       userForModals,
       hideEditUserRolesModal,
-      editUserRolesModalIsVisible
+      editUserRolesModalIsVisible,
+      hasPermissions
     }
   }
 }

@@ -59,7 +59,6 @@ export default {
 </script>
 
 <style scoped>
-
 .backdrop {
   width: 100%;
   height: 100vh;

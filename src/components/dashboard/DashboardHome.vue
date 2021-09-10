@@ -25,19 +25,19 @@ export default {
     });
 
     const users = computed(() => {
-          return store.getters['users/users'];
-        });
-        users.value
-        .then(result => {
-          usersTarget = Object.assign({}, result);
-        })
-        .then(() => {
-          for (const property in usersTarget) {
-            if(usersTarget[property].id === authUser.value.uid) {
-              user.value = usersTarget[property];
-            }
-          }
-        });
+      return store.getters['users/users'];
+    });
+    users.value
+    .then(result => {
+      usersTarget = Object.assign({}, result);
+    })
+    .then(() => {
+      for (const property in usersTarget) {
+        if(usersTarget[property].id === authUser.value.uid) {
+          user.value = usersTarget[property];
+        }
+      }
+    });
 
     usersDb.setUsers();
 

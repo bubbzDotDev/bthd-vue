@@ -1,5 +1,5 @@
 <template>
-  <div class="manage-leadership">
+  <div v-if="hasPermissions" class="manage-leadership">
     <base-card v-if="clanInfo.length > 0">
       <basecard-header>
         MANAGE LEADERSHIP
@@ -48,16 +48,55 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import LeadershipDb from '@/firebase/leadership-db.js'
 
 export default {
   setup(_, { emit }) {
+    const hasPermissions = ref(false);
+    const user = ref({});
+    const roles = ref([]);
+    const rolesWithPermission = ref([]);
+    let usersTarget;
     const clanInfo = ref([]);
     const leadershipInfo = ref([]);
     const clanUrl = 'https://www.bungie.net/en/ClanV2?groupid=';
     const store = useStore();
+
+    const authUser = computed(() => {
+      return store.getters['auth/user']; 
+    });
+
+    const users = computed(() => {
+      return store.getters['users/users'];
+    });
+    users.value
+    .then(result => {
+      usersTarget = Object.assign({}, result);
+    })
+    .then(() => {
+      for (const property in usersTarget) {
+        if(usersTarget[property].id === authUser.value.uid) {
+          user.value = usersTarget[property];
+
+          roles.value = store.getters['roles/roles'];
+          roles.value = JSON.parse(JSON.stringify(roles.value));
+
+          roles.value.forEach(role => {
+            if (role.permissions.includes('ManageLeadership')) {
+              rolesWithPermission.value.push(role.id);
+            }
+          });
+
+          rolesWithPermission.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              hasPermissions.value = true;
+            }
+          });
+        }
+      }
+    });
 
     setTimeout(() => {
       clanInfo.value = store.getters['data/clans'];
@@ -125,7 +164,8 @@ export default {
       loadAllClans,
       promoteToTeamLeader,
       demoteToAdmin,
-      loadClan
+      loadClan,
+      hasPermissions
     };
   }
 }
