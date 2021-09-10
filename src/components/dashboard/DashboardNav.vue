@@ -14,31 +14,31 @@
             <span v-if="!menuIsOpen" class="tooltiptext">Profile</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageClans">
           <router-link @click="toggleMenu(false)" to="/dashboard/clans" class="tooltip">
             <img src="@/assets/img/icons/settings.png" alt="settings icon" width="20" height="20">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Clans</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageLeadership">
           <router-link @click="toggleMenu(false)" to="/dashboard/leadership" class="tooltip">
             <img src="@/assets/img/icons/leadership.png" alt="staff icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Leadership</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageBOTM">
           <router-link @click="toggleMenu(false)" to="/dashboard/botm" class="tooltip">
             <img src="@/assets/img/icons/m.png" alt="Bullethead of the Month icon" width="16" height="16">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTM</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageBOTY">
           <router-link @click="toggleMenu(false)" to="/dashboard/boty" class="tooltip">
             <img src="@/assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTY</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageSiteStaff">
           <router-link @click="toggleMenu(false)" to="/dashboard/staff" class="tooltip">
             <img src="@/assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
@@ -62,27 +62,27 @@
             <span class="menu-item"> Profile</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageClans">
           <router-link @click="toggleMenu(false)" to="/dashboard/clans">
             <span class="menu-item"> Manage Clans</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageLeadership">
           <router-link @click="toggleMenu(false)" to="/dashboard/leadership">
             <span class="menu-item"> Manage Leadership</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageBOTM">
           <router-link @click="toggleMenu(false)" to="/dashboard/botm">
             <span class="menu-item"> Manage BOTM</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageBOTY">
           <router-link @click="toggleMenu(false)" to="/dashboard/boty">
             <span class="menu-item"> Manage BOTY</span>
           </router-link>
         </li>
-        <li>
+        <li v-if="canManageSiteStaff">
           <router-link @click="toggleMenu(false)" to="/dashboard/staff">
             <span class="menu-item"> Manage Site Staff</span>
           </router-link>
@@ -101,10 +101,103 @@
 </template>
 
 <script>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
+import { useStore } from 'vuex'
+
 export default {
   emits: ['menu-open'],
   setup(_, { emit }) {
+    const canManageClans = ref(false);
+    const canManageLeadership = ref(false);
+    const canManageBOTM = ref(false);
+    const canManageBOTY = ref(false);
+    const canManageSiteStaff = ref(false);
+    const user = ref({});
+    const roles = ref([]);
+    const rolesWithManageClans = ref([]);
+    const rolesWithManageLeadership = ref([]);
+    const rolesWithManageBOTM = ref([]);
+    const rolesWithManageBOTY = ref([]);
+    const rolesWithManageSiteStaff = ref([]);
+
+    let usersTarget;
+    const store = useStore();
+
+    const authUser = computed(() => {
+      return store.getters['auth/user']; 
+    });
+
+    const users = computed(() => {
+      return store.getters['users/users'];
+    });
+    users.value
+    .then(result => {
+      usersTarget = Object.assign({}, result);
+    })
+    .then(() => {
+      for (const property in usersTarget) {
+        if(usersTarget[property].id === authUser.value.uid) {
+          user.value = usersTarget[property];
+
+          roles.value = store.getters['roles/roles'];
+          roles.value = JSON.parse(JSON.stringify(roles.value));
+
+          roles.value.forEach(role => {
+            if (role.permissions.includes('ManageClans')) {
+              rolesWithManageClans.value.push(role.id);
+            }
+            if (role.permissions.includes('ManageLeadership')) {
+              rolesWithManageLeadership.value.push(role.id);
+            }
+            if (role.permissions.includes('ManageBOTM')) {
+              rolesWithManageBOTM.value.push(role.id);
+            }
+            if (role.permissions.includes('ManageBOTY')) {
+              rolesWithManageBOTY.value.push(role.id);
+            }
+            if (role.permissions.includes('ManageSiteStaff')) {
+              rolesWithManageSiteStaff.value.push(role.id);
+            }
+          });
+
+          // Manage Clans Permissions
+          rolesWithManageClans.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              canManageClans.value = true;
+            }
+          });
+
+          // Manage Leadership Permissions
+          rolesWithManageLeadership.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              canManageLeadership.value = true;
+            }
+          });
+
+          // Manage BOTM Permissions
+          rolesWithManageBOTM.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              canManageBOTM.value = true;
+            }
+          });
+
+          // Manage BOTY Permissions
+          rolesWithManageBOTY.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              canManageBOTY.value = true;
+            }
+          });
+
+          // Manage Site Staff Permissions
+          rolesWithManageSiteStaff.value.forEach(role => {
+            if (user.value.roles.includes(role)) {
+              canManageSiteStaff.value = true;
+            }
+          });
+        }
+      }
+    });
+
     const menuIsOpen = ref(false);
 
     function toggleMenu(command) {
@@ -131,7 +224,12 @@ export default {
 
     return {
       menuIsOpen,
-      toggleMenu
+      toggleMenu,
+      canManageClans,
+      canManageLeadership,
+      canManageBOTM,
+      canManageBOTY,
+      canManageSiteStaff
     };
   }
 }
