@@ -35,6 +35,7 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
@@ -45,6 +46,7 @@ export default {
     const error = ref(null);
 
     const store = useStore();
+    const router = useRouter();
 
     async function submitForm() {
       formIsValid.value = true;
@@ -64,6 +66,7 @@ export default {
         await store.dispatch('auth/login', data);
         email.value = '';
         password.value = '';
+        router.push({ name: 'dashboard-home' });
       } catch (err) {
         error.value = err.message || 'Failed to authenticate.';
       }

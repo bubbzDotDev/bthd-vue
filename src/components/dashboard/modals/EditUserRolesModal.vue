@@ -1,16 +1,19 @@
 <template>
   <div class="backdrop">
     <base-card class="modal">
-      <basecard-header>Add User Roles</basecard-header>
-      <fieldset>
+      <basecard-header>Edit User Roles</basecard-header>
+      <fieldset v-if="roles.length > 0">
         <legend>Roles for {{ user.bungieName || user.email }}</legend>
         <label v-for="role in roles" :key="role.id">
           <input type="checkbox" v-model="rolesToUser" :value="role.id"> 
           {{ role.name }}
         </label>
       </fieldset>
+      <fieldset v-else>
+        <p>No roles available. Cancel and create a role first.</p>
+      </fieldset>
       <div class="button-div">
-        <base-button @click="addRole">Add</base-button>
+        <base-button v-if="roles.length > 0" @click="updateRoles">Edit User</base-button>
         <button @click="hideModal" class="cancel">Cancel</button>
       </div>
     </base-card>
@@ -35,17 +38,15 @@ export default {
       emit('hide-modal');
     }
 
-    function addRole() {
-      rolesToUser.value.forEach(role => {
-        usersDb.addRoleToUser(props.user, role);
-      });
+    function updateRoles() {
+      usersDb.updateUserRoles(props.user, rolesToUser.value);
       hideModal();
       emit('toast');
     }
 
     return {
       hideModal,
-      addRole,
+      updateRoles,
       rolesToUser
     };
   }

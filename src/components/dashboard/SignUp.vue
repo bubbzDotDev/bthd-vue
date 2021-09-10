@@ -66,14 +66,12 @@ export default {
         await store.dispatch('auth/signup', data);
         email.value = '';
         password.value = '';
+        router.push({ name: 'dashboard-home' });
       } catch (err) {
         error.value = err.message || 'Failed to authenticate.';
       }
       
       isLoading.value = false;
-
-      router.push({ name: 'dashboard-home' });
-      // router.push({ name: 'dashboard-home', query: { redirect: '/dashboard' }});
     }
 
     function handleError() {

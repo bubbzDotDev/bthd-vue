@@ -13,6 +13,7 @@
 
 <script>
 import RolesDb from '@/firebase/roles-db.js'
+import UsersDb from '@/firebase/users-db.js'
 
 export default {
   props: {
@@ -26,9 +27,11 @@ export default {
     }
 
     const rolesDb = new RolesDb();
+    const usersDb = new UsersDb();
 
     function deleteRole() {
       rolesDb.removeRole(props.role);
+      usersDb.removeRoleFromUsers(props.role);
       hideModal();
       emit('toast');
     }

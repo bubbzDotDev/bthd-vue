@@ -9,7 +9,7 @@
           <h3>Roles</h3>
           <ul class="roles-list">
             <li v-for="role in roles" :key="role.id">
-              <a @click="launchViewRoleModal(role)">{{ role.name }}</a>
+              <a @click="launchViewRoleModal(role)">{{ role.name }}</a> 
               <button @click="launchDeleteRoleModal(role)" class="delete-role-button">✖</button>
             </li>
             <li class="center"><base-button @click="launchCreateRoleModal">Create Role</base-button></li>

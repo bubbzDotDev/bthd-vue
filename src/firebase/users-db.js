@@ -42,28 +42,34 @@ export default class UsersDb {
     });
   }
 
-  async addRoleToUser(user, role) {
+  async updateUserRoles(user, roles) {
     ref.doc(`${user.id}`).update({
-      roles: firebase.firestore.FieldValue.arrayUnion(role.id)
+      roles: roles
     })
     .then(() => {
-      console.log('Role added successfully!');
+      console.log('Roles updated successfully!');
+      this.setUsers();
     })
     .catch((error) => {
-      console.error('Error adding role: ', error);
+      console.error('Error updating roles: ', error);
     });
   }
 
-  async removeRoleFromUser(user, role) {
-    ref.doc(`${user.id}`).update({
-      roles: firebase.firestore.FieldValue.arrayRemove(role.id)
-    })
-    .then(() => {
-      console.log('Role removed successfully!');
-    })
-    .catch((error) => {
-      console.error('Error removing role: ', error);
+  async removeRoleFromUsers(role) {
+    ref.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        const user = doc.data();
+        ref.doc(`${user.id}`).update({
+          roles: firebase.firestore.FieldValue.arrayRemove(role.id)
+        })
+        .then(() => {
+          console.log('Role removed successfully!');
+          this.setUsers();
+        })
+        .catch((error) => {
+          console.error('Error removing role: ', error);
+        });
+      });
     });
   }
-
 }
