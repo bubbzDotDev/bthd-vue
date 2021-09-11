@@ -37,6 +37,7 @@ export default {
   setup() {
     const menuIsOpen = ref(false);
     const store = useStore();
+
     const user = computed(() => {
       return store.getters['auth/user'];
     });

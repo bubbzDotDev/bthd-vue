@@ -15,7 +15,9 @@ export default {
     const user = ref({});
     let usersTarget;
     const store = useStore();
+
     const usersDb = new UsersDb();
+    usersDb.setListener();
 
     const rolesDb = new RolesDb();
     rolesDb.setListener();
@@ -24,41 +26,28 @@ export default {
       return store.getters['auth/user']; 
     });
 
-    const users = computed(() => {
-      return store.getters['users/users'];
-    });
-    users.value
-    .then(result => {
-      usersTarget = Object.assign({}, result);
-    })
-    .then(() => {
-      for (const property in usersTarget) {
-        if(usersTarget[property].id === authUser.value.uid) {
-          user.value = usersTarget[property];
+    function getData() {
+      const users = computed(() => {
+        return store.getters['users/users'];
+      });
+      users.value
+      .then(result => {
+        usersTarget = Object.assign({}, result);
+      })
+      .then(() => {
+        for (const property in usersTarget) {
+          if(usersTarget[property].id === authUser.value.uid) {
+            user.value = usersTarget[property];
+          }
         }
-      }
-    });
+      });
+    }
 
-    usersDb.setUsers();
+    getData();
 
     setTimeout(() => {
-        const users = computed(() => {
-          return store.getters['users/users'];
-        });
-        users.value
-        .then(result => {
-          usersTarget = Object.assign({}, result);
-        })
-        .then(() => {
-          for (const property in usersTarget) {
-            if(usersTarget[property].id === authUser.value.uid) {
-              user.value = usersTarget[property];
-            }
-          }
-        });
+        getData();
       }, 500);
-
-    
 
     return {
       user

@@ -127,76 +127,84 @@ export default {
       return store.getters['auth/user']; 
     });
 
-    const users = computed(() => {
-      return store.getters['users/users'];
-    });
-    users.value
-    .then(result => {
-      usersTarget = Object.assign({}, result);
-    })
-    .then(() => {
-      for (const property in usersTarget) {
-        if(usersTarget[property].id === authUser.value.uid) {
-          user.value = usersTarget[property];
+    function getData() {
+      const users = computed(() => {
+        return store.getters['users/users'];
+      });
+      users.value
+      .then(result => {
+        usersTarget = Object.assign({}, result);
+      })
+      .then(() => {
+        for (const property in usersTarget) {
+          if(usersTarget[property].id === authUser.value.uid) {
+            user.value = usersTarget[property];
 
-          roles.value = store.getters['roles/roles'];
-          roles.value = JSON.parse(JSON.stringify(roles.value));
+            roles.value = store.getters['roles/roles'];
+            roles.value = JSON.parse(JSON.stringify(roles.value));
 
-          roles.value.forEach(role => {
-            if (role.permissions.includes('ManageClans')) {
-              rolesWithManageClans.value.push(role.id);
-            }
-            if (role.permissions.includes('ManageLeadership')) {
-              rolesWithManageLeadership.value.push(role.id);
-            }
-            if (role.permissions.includes('ManageBOTM')) {
-              rolesWithManageBOTM.value.push(role.id);
-            }
-            if (role.permissions.includes('ManageBOTY')) {
-              rolesWithManageBOTY.value.push(role.id);
-            }
-            if (role.permissions.includes('ManageSiteStaff')) {
-              rolesWithManageSiteStaff.value.push(role.id);
-            }
-          });
+            roles.value.forEach(role => {
+              if (role.permissions.includes('ManageClans')) {
+                rolesWithManageClans.value.push(role.id);
+              }
+              if (role.permissions.includes('ManageLeadership')) {
+                rolesWithManageLeadership.value.push(role.id);
+              }
+              if (role.permissions.includes('ManageBOTM')) {
+                rolesWithManageBOTM.value.push(role.id);
+              }
+              if (role.permissions.includes('ManageBOTY')) {
+                rolesWithManageBOTY.value.push(role.id);
+              }
+              if (role.permissions.includes('ManageSiteStaff')) {
+                rolesWithManageSiteStaff.value.push(role.id);
+              }
+            });
 
-          // Manage Clans Permissions
-          rolesWithManageClans.value.forEach(role => {
-            if (user.value.roles.includes(role)) {
-              canManageClans.value = true;
-            }
-          });
+            // Manage Clans Permissions
+            rolesWithManageClans.value.forEach(role => {
+              if (user.value.roles.includes(role)) {
+                canManageClans.value = true;
+              }
+            });
 
-          // Manage Leadership Permissions
-          rolesWithManageLeadership.value.forEach(role => {
-            if (user.value.roles.includes(role)) {
-              canManageLeadership.value = true;
-            }
-          });
+            // Manage Leadership Permissions
+            rolesWithManageLeadership.value.forEach(role => {
+              if (user.value.roles.includes(role)) {
+                canManageLeadership.value = true;
+              }
+            });
 
-          // Manage BOTM Permissions
-          rolesWithManageBOTM.value.forEach(role => {
-            if (user.value.roles.includes(role)) {
-              canManageBOTM.value = true;
-            }
-          });
+            // Manage BOTM Permissions
+            rolesWithManageBOTM.value.forEach(role => {
+              if (user.value.roles.includes(role)) {
+                canManageBOTM.value = true;
+              }
+            });
 
-          // Manage BOTY Permissions
-          rolesWithManageBOTY.value.forEach(role => {
-            if (user.value.roles.includes(role)) {
-              canManageBOTY.value = true;
-            }
-          });
+            // Manage BOTY Permissions
+            rolesWithManageBOTY.value.forEach(role => {
+              if (user.value.roles.includes(role)) {
+                canManageBOTY.value = true;
+              }
+            });
 
-          // Manage Site Staff Permissions
-          rolesWithManageSiteStaff.value.forEach(role => {
-            if (user.value.roles.includes(role)) {
-              canManageSiteStaff.value = true;
-            }
-          });
+            // Manage Site Staff Permissions
+            rolesWithManageSiteStaff.value.forEach(role => {
+              if (user.value.roles.includes(role)) {
+                canManageSiteStaff.value = true;
+              }
+            });
+          }
         }
-      }
-    });
+      });
+    }
+
+    getData();
+    
+    setTimeout(() => {
+        getData();
+      }, 500);
 
     const menuIsOpen = ref(false);
 
