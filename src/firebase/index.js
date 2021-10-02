@@ -2,13 +2,13 @@ import firebase from 'firebase'
 
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
-  authDomain: "bthd-13c1e.firebaseapp.com",
-  databaseURL: "https://bthd-13c1e-default-rtdb.firebaseio.com",
-  projectId: "bthd-13c1e",
-  storageBucket: "bthd-13c1e.appspot.com",
-  messagingSenderId: "205527413041",
-  appId: "1:205527413041:web:a78d5be516c837e6934010",
-  measurementId: "G-QG6V5FDWTE"
+  authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_FIREBASE_APP_ID,
+  measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID
 };
 
 firebase.initializeApp(firebaseConfig);
