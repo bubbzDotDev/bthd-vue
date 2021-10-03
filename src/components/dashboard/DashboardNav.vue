@@ -44,12 +44,12 @@
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
             <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
           </router-link>
-        </li>
+        </li> -->
       </ul>
       <ul class="nav-text" v-show="menuIsOpen">
         <li>
@@ -87,11 +87,11 @@
             <span class="menu-item"> Manage Site Staff</span>
           </router-link>
         </li>
-        <li>
+        <!-- <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/members">
             <span class="menu-item"> Manage Members</span>
           </router-link>
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="menu-arrow" :class="{ 'openArrow':menuIsOpen }">
