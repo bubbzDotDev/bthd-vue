@@ -22,7 +22,7 @@
         </div>
       </div>
     </base-card>
-    <base-card v-else>
+    <base-card v-else class="loader-card">
       <basecard-header>
         LEADERSHIP
       </basecard-header>
@@ -115,6 +115,16 @@ text-decoration: none;
 
 .admins {
   color: #206694;
+}
+
+.loader-card {
+  width: 100vw;
+}
+
+@media (min-width: 30em) {
+  .loader-card {
+    width: 100%;
+  }
 }
 
 .loader {

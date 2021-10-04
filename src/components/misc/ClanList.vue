@@ -11,7 +11,7 @@
         </div>
       </div>
     </base-card>
-    <base-card v-else>
+    <base-card v-else class="loader-card">
       <basecard-header>
         CLANS
       </basecard-header>
@@ -48,11 +48,13 @@ export default {
 .clan-list {
   margin: 0 auto;
 }
+
 .clan-card-body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin: 1rem;
 }
+
 .clan-info {
   border: 3px dashed #343A40;
   border-radius: 5px;
@@ -61,6 +63,7 @@ export default {
   text-align: center;
   color: #99AAB5;
 }
+
 .clan-info button {
   cursor: pointer;
   color: #470dbb;
@@ -71,22 +74,37 @@ export default {
   border-radius: 5px;
   font-size: large;
 }
+
 .clan-info button:hover {
   color: #99AAB5;
   background-color: #000;
 }
+
 .clan-info p {
   margin: 0.5rem 0 0 0;
   font-size: smaller;
 }
+
 .clan-info-count-green {
   color: green;
   font-weight: bold;
 }
+
 .clan-info-count-red {
   color: red;
   font-weight: bold;
 }
+
+.loader-card {
+  width: 100vw;
+}
+
+@media (min-width: 30em) {
+  .loader-card {
+    width: 100%;
+  }
+}
+
 .loader {
   width:30px;
   height:27.6px;
