@@ -67,19 +67,21 @@ nav {
 }
 
 ul {
-  margin: 0
+  margin: 0;
+  padding: 1rem;
 }
 
 li {
   list-style: none;
   width: fit-content;
   transition: ease-in-out 1s;
+  font-size: 1.5rem;
 }
 
 li a {
   color: #99AAB5;
   text-decoration: none;
-  padding: 0.5rem;
+  padding: 0.75rem;
   display: block;
   width: inherit;
 }
@@ -100,11 +102,15 @@ li a:hover {
     display: block;
 }
 
+.hamburger {
+  font-size: 2rem;
+}
+
 .social {
   display: flex;
   justify-content: space-between;
-  width: 150px;
-  padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+  width: 175px;
+  padding: 2.25rem 2.5rem 0.5rem 0.5rem;
 }
 
 .social a:hover > .icons {
@@ -113,7 +119,7 @@ li a:hover {
 
 .icons {
   color: #99AAB5;
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 a.router-link-active {
@@ -122,20 +128,29 @@ a.router-link-active {
 
 @media only screen and (min-width: 32.5em) {
   .navigation {
-      display: flex;
-      align-items: center;
+    display: flex;
+    align-items: center;
   }
 
   .navigation li {
-      display: block;
+    display: block;
+  }
+
+  li {
+    font-size: 1.25rem;
+  }
+
+  ul {
+    padding: 0.5rem;
   }
 
   .navigation li:first-child {
-      display: none;
+    display: none;
   }
 
   .social {
     align-items: center;
+    padding: 0.5rem 2.5rem 0.5rem 0.5rem;
   }
 }
 </style>
