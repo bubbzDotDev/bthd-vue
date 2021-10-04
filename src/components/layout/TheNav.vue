@@ -68,7 +68,7 @@ nav {
 
 ul {
   margin: 0;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 li {
@@ -110,7 +110,7 @@ li a:hover {
   display: flex;
   justify-content: space-between;
   width: 175px;
-  padding: 2.25rem 2.5rem 0.5rem 0.5rem;
+  padding: 2rem 2.5rem 0.5rem 0.5rem;
 }
 
 .social a:hover > .icons {
