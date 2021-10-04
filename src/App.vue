@@ -31,13 +31,6 @@ export default {
     
     setTimeout(() => {
       clanInfo.value = store.getters['data/clans'];
-
-      // setInterval(() => {
-      //   clanInfo.value.forEach(clan => {
-      //     store.dispatch('data/updateDataInDb', clan.id);
-      //   });
-      // }, 3600000); // 1hr: 3600000 30sec: 30000
-
     }, 2000);
   }
 }

@@ -4,8 +4,8 @@ admin.initializeApp();
 const XMLHttpRequest = require("xhr2");
 
 exports.updateDataInDb = functions.pubsub
-    .schedule("every 1 hours").onRun((context) => {
-      console.log("This will run every hour.");
+    .schedule("every 5 minutes").onRun((context) => {
+      console.log("This will run every 5 minutes.");
 
       const ref = admin.firestore().collection("clans");
 
