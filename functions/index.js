@@ -4,8 +4,8 @@ admin.initializeApp();
 const XMLHttpRequest = require("xhr2");
 
 exports.updateDataInDb = functions.pubsub
-    .schedule("every 5 minutes").onRun((context) => {
-      console.log("This will run every 5 minutes.");
+    .schedule("every 3 minutes").onRun((context) => {
+      console.log("This will run every 3 minutes.");
 
       const ref = admin.firestore().collection("clans");
 
@@ -19,6 +19,7 @@ exports.updateDataInDb = functions.pubsub
             max: null,
             admins: [],
             founders: [],
+            staff: [],
           };
 
           // Get general clan info
@@ -52,6 +53,7 @@ exports.updateDataInDb = functions.pubsub
                         bungieName: member.bungieNetUserInfo.displayName,
                       };
                       clan["admins"].push(admin);
+                      clan["staff"].push(admin);
                     }
 
                     if (member.memberType === 5) { // Founder
@@ -63,6 +65,7 @@ exports.updateDataInDb = functions.pubsub
                         bungieName: member.bungieNetUserInfo.displayName,
                       };
                       clan["founders"].push(founder);
+                      clan["staff"].push(founder);
                     }
                   });
 
@@ -72,12 +75,13 @@ exports.updateDataInDb = functions.pubsub
                     max: clan.max,
                     admins: clan.admins,
                     founders: clan.founders,
+                    staff: clan.staff,
                   })
                       .then(() => {
-                        console.log("Document updated successfully!");
+                        console.log("Clan doc updated successfully!");
                       })
                       .catch((error) => {
-                        console.error("Error updating document: ", error);
+                        console.error("Error updating clan doc: ", error);
                       });
                 }
               };
@@ -95,4 +99,55 @@ exports.updateDataInDb = functions.pubsub
       });
     });
 
+// exports.updateLeadership = functions.firestore
+//     .document("clans/{clanId}")
+//     .onWrite((change, context) => {
+//       const document = change.after.data();
+//       const ref = admin.firestore().collection("leadership");
 
+//       const staff = [];
+//       document.admins.forEach((admin) => {
+//         staff.push(admin);
+//       });
+//       document.founders.forEach((founder) => {
+//         staff.push(founder);
+//       });
+
+//       const adminsUpdated = [];
+//       const foundersUpdated = [];
+//       staff.forEach((staffMember) => {
+//         const adminIndex = document.admins.findIndex((admin) => {
+//           admin.id === staffMember.id;
+//         });
+//         if (adminIndex > -1) {
+//           adminsUpdated.push(staffMember);
+//         }
+//         const founderIndex = document.founders.findIndex((founder) => {
+//           founder.id === staffMember.id;
+//         });
+//         if (founderIndex > -1) {
+//           foundersUpdated.push(staffMember);
+//         }
+//       });
+
+//       functions.logger.log("adminsUpdated:", adminsUpdated);
+//       functions.logger.log("foundersUpdated:", foundersUpdated);
+
+//       ref.doc(`${document.id}`).update({
+//         name: document.name,
+//         admins: adminsUpdated,
+//         founders: foundersUpdated,
+//       })
+//           .then(() => {
+//             console.log("Leadership doc updated.");
+//           })
+//           .catch((error) => {
+//             console.error("Error updating leadership doc: ", error);
+//           });
+//       return ref.get().then((querySnapshot) => {
+//         querySnapshot.forEach((doc) => {
+//           const document = doc.data();
+//           console.log(document.id, "leadership was updated.");
+//         });
+//       });
+//     });
