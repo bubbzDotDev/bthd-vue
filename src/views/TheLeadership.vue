@@ -9,7 +9,7 @@
           <a :href="clanUrl + clan.id" target="_blank" rel="noopener"><button>{{ clan.name }}</button></a>
           <p>Team Leader<span v-if="clan.founders.length > 1">s</span>:</p>
           <ul class="staff-list">
-            <li v-for="founder in clan.founders" :key="founder.id">
+            <li v-for="founder in clan.founders" :key="founder.id" class="no-wrap">
               <div v-for="clanData in clanInfo" :key="clanData.id" class="inline">
                 <div v-if="clan.id === clanData.id">
                   <div v-for="staffMember in clanData.staff" :key="staffMember.id">
@@ -26,7 +26,7 @@
           </ul>
           <p v-if="clan.admins.length > 0">Admin<span v-if="clan.admins.length > 1">s</span>:</p>
           <ul class="staff-list">
-            <li v-for="admin in clan.admins" :key="admin.id">
+            <li v-for="admin in clan.admins" :key="admin.id" class="no-wrap">
               <div v-for="clanData in clanInfo" :key="clanData.id" class="inline">
                 <div v-if="clan.id === clanData.id">
                   <div v-for="staffMember in clanData.staff" :key="staffMember.id">
@@ -206,5 +206,9 @@ text-decoration: none;
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
   visibility: visible;
+}
+
+.no-wrap {
+  white-space: nowrap;
 }
 </style>
