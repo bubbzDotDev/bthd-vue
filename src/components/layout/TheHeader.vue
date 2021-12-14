@@ -43,6 +43,7 @@ p {
 .github-button-container {
   display: flex;
   justify-content: end;
-  padding-right: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
 }
 </style>
