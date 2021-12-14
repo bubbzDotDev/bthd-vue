@@ -1,5 +1,8 @@
 <template>
   <header>
+    <div class="github-button-container">
+      <a class="github-button" href="https://github.com/bubbzdotdev/bthd-vue" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-star" aria-label="Star bubbzdotdev/bthd-vue on GitHub">Star</a>
+    </div>
     <div id="logo">
       <img src="@/assets/img/logo.png" alt="Bulletheads Logo" width="229" height="259">
     </div>
@@ -35,5 +38,11 @@ h1 {
 p {
   font-family: 'Permanent Marker', cursive;
   margin: 0;
+}
+
+.github-button-container {
+  display: flex;
+  justify-content: end;
+  padding-right: 0.5rem;
 }
 </style>
