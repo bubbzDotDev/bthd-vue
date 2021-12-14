@@ -91,15 +91,15 @@ li a:hover {
 }
 
 .navigation li:first-child {
-    display: block;
+  display: block;
 }
 
 .navigation li {
-    display: none;
+  display: none;
 }
 
 .responsive li {
-    display: block;
+  display: block;
 }
 
 .hamburger {
