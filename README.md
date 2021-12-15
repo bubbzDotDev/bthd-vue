@@ -1,4 +1,7 @@
-# bthd-vue
+# Open Source Destiny 2 Clan Management App
+
+## Video demonstration of features
+[YouTube](https://www.youtube.com/watch?v=utkdUL-7cBU)
 
 ## Project setup
 ```
