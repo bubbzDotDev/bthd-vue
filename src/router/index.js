@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-const HomePage = () => import('@/views/HomePage.vue');
-const TheDashboard = () => import('@/views/TheDashboard.vue');
-const TheLeadership = () => import('@/views/TheLeadership.vue');
-const UserProfile = () => import('@/components/dashboard/UserProfile.vue');
-const DashboardHome = () => import('@/components/dashboard/DashboardHome.vue');
-const SignUp = () => import('@/components/dashboard/SignUp.vue');
-const ManageClans = () => import('@/components/dashboard/ManageClans.vue');
-const ManageStaff = () => import('@/components/dashboard/ManageStaff.vue');
-const ManageMembers = () => import('@/components/dashboard/ManageMembers.vue');
-const ManageBOTM = () => import('@/components/dashboard/ManageBOTM.vue');
-const ManageBOTY = () => import('@/components/dashboard/ManageBOTY.vue');
-const ManageLeadership = () => import('@/components/dashboard/ManageLeadership.vue');
+const HomePage = () => import('../views/HomePage.vue');
+const TheDashboard = () => import('../views/TheDashboard.vue');
+const TheLeadership = () => import('../views/TheLeadership.vue');
+const UserProfile = () => import('../components/dashboard/UserProfile.vue');
+const DashboardHome = () => import('../components/dashboard/DashboardHome.vue');
+const SignUp = () => import('../components/dashboard/SignUp.vue');
+const ManageClans = () => import('../components/dashboard/ManageClans.vue');
+const ManageStaff = () => import('../components/dashboard/ManageStaff.vue');
+const ManageMembers = () => import('../components/dashboard/ManageMembers.vue');
+const ManageBOTM = () => import('../components/dashboard/ManageBOTM.vue');
+const ManageBOTY = () => import('../components/dashboard/ManageBOTY.vue');
+const ManageLeadership = () => import('../components/dashboard/ManageLeadership.vue');
 
 const router = createRouter({
   history: createWebHistory(),

@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import UsersDb from '@/firebase/users-db.js'
-import RolesDb from '@/firebase/roles-db.js'
+import UsersDb from '../../firebase/users-db.js'
+import RolesDb from '../../firebase/roles-db.js'
 import { useStore } from 'vuex'
 import { ref, computed } from 'vue'
 

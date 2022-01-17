@@ -22,7 +22,7 @@
 
 <script>
 import { ref } from 'vue'
-import UsersDb from '@/firebase/users-db.js'
+import UsersDb from '../../../firebase/users-db.js'
 
 export default {
   props: {

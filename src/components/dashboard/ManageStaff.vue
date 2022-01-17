@@ -55,10 +55,10 @@
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import CreateRoleModal from '@/components/dashboard/modals/CreateRoleModal.vue'
-import DeleteRoleModal from '@/components/dashboard/modals/DeleteRoleModal.vue'
-import ViewRoleModal from '@/components/dashboard/modals/ViewRoleModal.vue'
-import EditUserRolesModal from '@/components/dashboard/modals/EditUserRolesModal.vue'
+import CreateRoleModal from './modals/CreateRoleModal.vue'
+import DeleteRoleModal from './modals/DeleteRoleModal.vue'
+import ViewRoleModal from './modals/ViewRoleModal.vue'
+import EditUserRolesModal from './modals/EditUserRolesModal.vue'
 import toastr from 'toastr'
 
 export default {

@@ -1,5 +1,5 @@
-import firebase from '@/firebase'
-import UsersDb from '@/firebase/users-db.js'
+import firebase from '../../../firebase'
+import UsersDb from '../../../firebase/users-db.js'
 
 export default {
   async login(context, payload) {
