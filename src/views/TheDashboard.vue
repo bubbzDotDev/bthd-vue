@@ -23,9 +23,9 @@
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute } from 'vue-router';
-import UserLogin from '@/components/dashboard/UserLogin.vue'
-import SignUp from '@/components/dashboard/SignUp.vue'
-import DashboardNav from '@/components/dashboard/DashboardNav.vue'
+import UserLogin from '../components/dashboard/UserLogin.vue'
+import SignUp from '../components/dashboard/SignUp.vue'
+import DashboardNav from '../components/dashboard/DashboardNav.vue'
 
 export default {
   name: 'Dashboard',

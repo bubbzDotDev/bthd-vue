@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import RolesDb from '@/firebase/roles-db.js'
-import UsersDb from '@/firebase/users-db.js'
+import RolesDb from '../../../firebase/roles-db.js'
+import UsersDb from '../../../firebase/users-db.js'
 
 export default {
   props: {

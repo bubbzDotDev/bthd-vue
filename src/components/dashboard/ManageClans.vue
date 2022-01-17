@@ -30,8 +30,8 @@
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import AddClanModal from '@/components/dashboard/modals/AddClanModal.vue'
-import RemoveClanModal from '@/components/dashboard/modals/RemoveClanModal.vue'
+import AddClanModal from './modals/AddClanModal.vue'
+import RemoveClanModal from './modals/RemoveClanModal.vue'
 import toastr from 'toastr'
 
 export default {

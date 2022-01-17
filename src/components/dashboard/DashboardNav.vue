@@ -4,49 +4,49 @@
       <ul>
         <li>
           <router-link @click="toggleMenu(false)" to="/dashboard" class="tooltip">
-            <img src="@/assets/img/icons/home.png" alt="home icon" height="20" width="20" />
+            <img src="../../assets/img/icons/home.png" alt="home icon" height="20" width="20" />
             <span v-if="!menuIsOpen" class="tooltiptext">Dashboard Home</span>
           </router-link>
         </li>
         <li>
           <router-link @click="toggleMenu(false)" to="/profile" class="tooltip">
-            <img class="to-profile" src="@/assets/img/icons/user.png" alt="admin icon" width="16" height="16" />
+            <img class="to-profile" src="../../assets/img/icons/user.png" alt="admin icon" width="16" height="16" />
             <span v-if="!menuIsOpen" class="tooltiptext">Profile</span>
           </router-link>
         </li>
         <li v-if="canManageClans">
           <router-link @click="toggleMenu(false)" to="/dashboard/clans" class="tooltip">
-            <img src="@/assets/img/icons/settings.png" alt="settings icon" width="20" height="20">
+            <img src="../../assets/img/icons/settings.png" alt="settings icon" width="20" height="20">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Clans</span>
           </router-link>
         </li>
         <li v-if="canManageLeadership">
           <router-link @click="toggleMenu(false)" to="/dashboard/leadership" class="tooltip">
-            <img src="@/assets/img/icons/leadership.png" alt="staff icon" width="24" height="24">
+            <img src="../../assets/img/icons/leadership.png" alt="staff icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Leadership</span>
           </router-link>
         </li>
         <li v-if="canManageBOTM">
           <router-link @click="toggleMenu(false)" to="/dashboard/botm" class="tooltip">
-            <img src="@/assets/img/icons/m.png" alt="Bullethead of the Month icon" width="16" height="16">
+            <img src="../../assets/img/icons/m.png" alt="Bullethead of the Month icon" width="16" height="16">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTM</span>
           </router-link>
         </li>
         <li v-if="canManageBOTY">
           <router-link @click="toggleMenu(false)" to="/dashboard/boty" class="tooltip">
-            <img src="@/assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16">
+            <img src="../../assets/img/icons/y.png" alt="Bulletheads of the Year icon" width="16" height="16">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage BOTY</span>
           </router-link>
         </li>
         <li v-if="canManageSiteStaff">
           <router-link @click="toggleMenu(false)" to="/dashboard/staff" class="tooltip">
-            <img src="@/assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
+            <img src="../../assets/img/icons/staff.png" alt="staff icon" width="20" height="20">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Site Staff</span>
           </router-link>
         </li>
         <!-- <li>
           <router-link @click="toggleMenu(false)" to="/dashboard/members" class="tooltip">
-            <img src="@/assets/img/icons/members.png" alt="members icon" width="24" height="24">
+            <img src="../../assets/img/icons/members.png" alt="members icon" width="24" height="24">
             <span v-if="!menuIsOpen" class="tooltiptext">Manage Members</span>
           </router-link>
         </li> -->
@@ -95,7 +95,7 @@
       </ul>
     </div>
     <div class="menu-arrow" :class="{ 'openArrow':menuIsOpen }">
-      <img @click="toggleMenu" class="arrow" src="@/assets/img/icons/arrow.png" alt="arrow" />
+      <img @click="toggleMenu" class="arrow" src="../../assets/img/icons/arrow.png" alt="arrow" />
     </div>
   </div>
 </template>

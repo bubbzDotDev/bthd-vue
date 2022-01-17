@@ -2,13 +2,13 @@
   <div class="discord-container">
     <base-card class="discord-card">
       <div class="discord-card-header">
-        <img src="@/assets/img/icons/discord_logo_and_text_white.png" alt="Discord logo with text" width="140" height="27">
+        <img src="../../assets/img/icons/discord_logo_and_text_white.png" alt="Discord logo with text" width="140" height="27">
         <span class="online-count-parent">
           <span class="online-count"><a href="https://discord.gg/bthd" target="_blank" rel="noopener">{{ onlineCount }}</a></span> 
           Guardians Online
         </span>
       </div>
-      <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img class="discord-hover-img" src="@/assets/img/icons/discord_blurple.png" alt="Discord logo" width="45" height="34"></a></p>
+      <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img class="discord-hover-img" src="../../assets/img/icons/discord_blurple.png" alt="Discord logo" width="45" height="34"></a></p>
     </base-card>
   </div>
 </template>
@@ -22,12 +22,12 @@ export default {
 
     function unhover() {
       const img = document.querySelector('.discord-hover-img');
-      img.setAttribute('src', require('@/assets/img/icons/discord_blurple.png'));
+      img.setAttribute('src', require('../../assets/img/icons/discord_blurple.png'));
     }
   
     function hover() {
       const img = document.querySelector('.discord-hover-img');
-      img.setAttribute('src', require('@/assets/img/icons/discord_white.png'));
+      img.setAttribute('src', require('../../assets/img/icons/discord_white.png'));
     }
 
     const discordJsonURL = 'https://discord.com/api/guilds/411607476430176256/widget.json';

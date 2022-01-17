@@ -4,7 +4,7 @@
       <a class="github-button" href="https://github.com/bubbzdotdev/bthd-vue" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-star" aria-label="Star bubbzdotdev/bthd-vue on GitHub">Star</a>
     </div>
     <div id="logo">
-      <img src="@/assets/img/logo.png" alt="Bulletheads Logo" width="229" height="259">
+      <img src="../../assets/img/logo.png" alt="Bulletheads Logo" width="229" height="259">
     </div>
     <div class="header-text">
       <h1>BULLETHEADS</h1>

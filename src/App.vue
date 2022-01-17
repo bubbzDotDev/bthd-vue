@@ -14,9 +14,9 @@
 <script>
 import { ref } from 'vue'
 import { useStore } from 'vuex'
-import TheHeader from '@/components/layout/TheHeader.vue'
-import TheNav from '@/components/layout/TheNav.vue'
-import TheFooter from '@/components/layout/TheFooter.vue'
+import TheHeader from './components/layout/TheHeader.vue'
+import TheNav from './components/layout/TheNav.vue'
+import TheFooter from './components/layout/TheFooter.vue'
 
 export default {
   name: 'App',

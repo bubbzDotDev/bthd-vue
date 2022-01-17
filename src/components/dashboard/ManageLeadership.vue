@@ -18,7 +18,7 @@
             <li v-for="founder in clan.founders" :key="founder.id">
               <a :href="`https://www.bungie.net/7/en/User/Profile/254/${founder.id}/${founder.bungieName}`" target="_blank" rel="noopener" class="team-leaders">{{ founder.bungieName }}</a>
               <button v-if="founder.memberType === 3" @click="demoteToAdmin(clan, founder)" class="promote-demote-buttons">
-                <img src="@/assets/img/icons/demote.png" alt="demote icon" width="20" height="20">
+                <img src="../../assets/img/icons/demote.png" alt="demote icon" width="20" height="20">
               </button>
             </li>
           </ul>
@@ -27,7 +27,7 @@
             <li v-for="admin in clan.admins" :key="admin.id">
               <a :href="`https://www.bungie.net/7/en/User/Profile/254/${admin.id}/${admin.bungieName}`" target="_blank" rel="noopener" class="admins">{{ admin.bungieName }}</a>
               <button @click="promoteToTeamLeader(clan, admin)" class="promote-demote-buttons">
-                <img src="@/assets/img/icons/promote.png" alt="promote icon" width="20" height="20">
+                <img src="../../assets/img/icons/promote.png" alt="promote icon" width="20" height="20">
               </button>
             </li>
           </ul>
@@ -50,7 +50,7 @@
 <script>
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
-import LeadershipDb from '@/firebase/leadership-db.js'
+import LeadershipDb from '../../firebase/leadership-db.js'
 
 export default {
   setup(_, { emit }) {

@@ -26,7 +26,7 @@
 
 <script>
 import { ref } from 'vue'
-import RolesDb from '@/firebase/roles-db.js'
+import RolesDb from '../../../firebase/roles-db.js'
 
 export default {
   props: {
