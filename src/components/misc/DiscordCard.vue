@@ -20,8 +20,8 @@ export default {
   setup() {
     const onlineCount = ref(null);
     const hovering = ref(false);
-    const discordImgBlurple = 'src/assets/img/icons/discord_blurple.png';
-    const discordImgWhite = 'src/assets/img/icons/discord_white.png';
+    const discordImgBlurple = new URL('../../assets/img/icons/discord_blurple.png', import.meta.url).href;
+    const discordImgWhite = new URL('../../assets/img/icons/discord_white.png', import.meta.url).href;
 
     function unhover() {
       hovering.value = false;
