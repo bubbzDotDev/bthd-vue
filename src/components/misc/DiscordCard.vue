@@ -8,7 +8,7 @@
           Guardians Online
         </span>
       </div>
-      <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img class="discord-hover-img" src="../../assets/img/icons/discord_blurple.png" alt="Discord logo" width="45" height="34"></a></p>
+      <p><a :onmouseover="hover" :onmouseout="unhover" href="https://discord.gg/bthd" target="_blank" rel="noopener">Join the Bulletheads Destiny<br />Discord Server today! <img :src="hovering ? discordImgWhite : discordImgBlurple" alt="Discord logo" width="45" height="34"></a></p>
     </base-card>
   </div>
 </template>
@@ -19,28 +19,32 @@ import { ref } from 'vue'
 export default {
   setup() {
     const onlineCount = ref(null);
+    const hovering = ref(false);
+    const discordImgBlurple = 'src/assets/img/icons/discord_blurple.png';
+    const discordImgWhite = 'src/assets/img/icons/discord_white.png';
 
     function unhover() {
-      const img = document.querySelector('.discord-hover-img');
-      img.setAttribute('src', require('../../assets/img/icons/discord_blurple.png'));
+      hovering.value = false;
     }
   
     function hover() {
-      const img = document.querySelector('.discord-hover-img');
-      img.setAttribute('src', require('../../assets/img/icons/discord_white.png'));
+      hovering.value = true;
     }
 
     const discordJsonURL = 'https://discord.com/api/guilds/411607476430176256/widget.json';
     fetch(discordJsonURL)
-    .then((response) => response.json())
-    .then((jsObject) => {
+    .then(response => response.json())
+    .then(jsObject => {
       onlineCount.value = jsObject.presence_count;
     });
 
     return {
       hover,
       unhover,
-      onlineCount
+      onlineCount,
+      hovering,
+      discordImgBlurple,
+      discordImgWhite
     }
   },
 }
